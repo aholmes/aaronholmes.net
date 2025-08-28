@@ -93,9 +93,9 @@ extensions: list[str] = [
     "sphinx.ext.extlinks",
     "sphinx_tags",
     "sphinx_reredirects",
-    "sphinx_sitemap"
+    "sphinx_sitemap",
+    "sphinxcontrib.plantuml"
 ]
-
 
 sitemap_url_scheme = "{link}"
 
@@ -162,6 +162,8 @@ extlinks: dict[str, tuple[str, str|None]] = {
     )
 }
 
+plantuml = f"java -jar {Path(os.getcwd(), '..', 'lib/plantuml-1.2025.4.jar')}"
+plantuml_output_format = "svg"
 
 def create_zips_for_examples(app: Sphinx, exception: Exception | None):
     if exception is not None:

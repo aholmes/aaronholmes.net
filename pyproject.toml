@@ -12,4 +12,5 @@ dependencies = [
     "sphinx-reredirects ~= 1.0.0",
     "sphinx-sitemap ~= 2.8.0",
     "sphinx-toolbox ~= 4.0.0",
+    "sphinxcontrib-plantuml ~= 0.30",
 ]

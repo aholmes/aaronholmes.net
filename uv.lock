@@ -14,6 +14,7 @@ dependencies = [
     { name = "sphinx-reredirects" },
     { name = "sphinx-sitemap" },
     { name = "sphinx-toolbox" },
+    { name = "sphinxcontrib-plantuml" },
 ]
 
 [package.metadata]
@@ -25,6 +26,7 @@ requires-dist = [
     { name = "sphinx-reredirects", specifier = "~=1.0.0" },
     { name = "sphinx-sitemap", specifier = "~=2.8.0" },
     { name = "sphinx-toolbox", specifier = "~=4.0.0" },
+    { name = "sphinxcontrib-plantuml", specifier = "~=0.30" },
 ]
 
 [[package]]
@@ -756,6 +758,15 @@ sdist = { url = "https://files.pythonhosted.org/packages/b2/e8/9ed3830aeed71f17c
 wheels = [
     { url = "https://files.pythonhosted.org/packages/c2/42/4c8646762ee83602e3fb3fbe774c2fac12f317deb0b5dbeeedd2d3ba4b77/sphinxcontrib_jsmath-1.0.1-py2.py3-none-any.whl", hash = "sha256:2ec2eaebfb78f3f2078e73666b1415417a116cc848b72e5172e596c871103178", size = 5071, upload-time = "2019-01-21T16:10:14.333Z" },
 ]
+
+[[package]]
+name = "sphinxcontrib-plantuml"
+version = "0.30"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "sphinx" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/4d/e0/91ee50f1a020e2ed48d370a054f94b012ba0d757214a420ac43c9327f818/sphinxcontrib-plantuml-0.30.tar.gz", hash = "sha256:2a1266ca43bddf44640ae44107003df4490de2b3c3154a0d627cfb63e9a169bf", size = 15084, upload-time = "2024-05-22T13:34:43.339Z" }
 
 [[package]]
 name = "sphinxcontrib-qthelp"
