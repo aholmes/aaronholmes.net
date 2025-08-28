@@ -13,7 +13,7 @@ UCLA Health - Maze Bug
 
 This take-home was for a Senior Cloud DevOps Engineer position in a key IT organization at UCLA Health.
 
-This is part 1 of a two-part take-home.
+This is part **a** of a two-part take-home. Read the second part, :ref:`Interview Coding Take-Homes: Part 2.b`.
 
 Prompt
 ------
