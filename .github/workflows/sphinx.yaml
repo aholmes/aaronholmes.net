@@ -27,7 +27,7 @@ jobs:
           java-version: "21"
 
       - name: "Set up Python"
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version-file: "pyproject.toml"
 
@@ -39,7 +39,7 @@ jobs:
 
       - name: Upload static files as artifact
         id: deployment
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: build/html/
 
