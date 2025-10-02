@@ -36,7 +36,8 @@ https://github.com/uclahs-cds/Ligare/blob/2021ffdeac4b92cf726a8fc35866a069119cb7
 #cs-nav > h1 {
     margin-top: -0.5rem;
 }
-.cs-nav-toc ul ul {
+.cs-nav-toc ul ul,
+.cs-nav-toc ol ol {
     padding-left: 0.5rem;
 }
 
@@ -131,14 +132,17 @@ div.document .page-date {
     padding-right: 5px;
     font-size: 0.7em;
 }
-ul:has(.toc-date) {
+ul:has(.toc-date),
+ol:has(.toc-date) {
     list-style: none;
     padding-left: 0.3rem;
 }
-ul:has(.toc-date) > li > a {
+ul:has(.toc-date) > li > a,
+ol:has(.toc-date) > li > a {
     display: none;
 }
-ul:has(.toc-date) ul {
+ul:has(.toc-date) ul,
+ol:has(.toc-date) ol {
     padding-left: 0;
 }
 
