@@ -7,8 +7,7 @@ hardware and electronics, gardening, playing drums, and more.*
 `[GitHub] <https://github.com/aholmes>`_ —
 `[Gists] <https://gist.github.com/aholmes>`_ —
 `[LinkedIn] <https://www.linkedin.com/in/aaholmes/>`_ —
-`[CodePen] <https://codepen.io/aholmes/>`_ —
-`[CodeMentor] <https://www.codementor.io/@aholmes>`_
+`[CodePen] <https://codepen.io/aholmes/>`_
 
 Posts
 =====

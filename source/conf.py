@@ -336,7 +336,6 @@ rst_prolog = """
 .. |cta| raw:: html
 
     <hr class="docutils">
-    <span>Need additional help? Consider contacting me on <a href="https://www.codementor.io/@aholmes"><img src="https://cdn.codementor.io/badges/book_session_github.svg" alt="Book session on Codementor" style="display:inline;margin:0;vertical-align:middle;" /></a></span>
 .. |disqus| raw:: html
 
     <div id="disqus_thread"></div>
