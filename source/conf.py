@@ -224,7 +224,7 @@ def collect_meta_dates(app: Sphinx, doctree: DocumentNode):
 
 
 # <a class="reference internal" href="subdoc.html">Title</a>
-rx = re.compile(r'(<a[^>]+href=")([^"]+)\.html(".*?>)([^<]+)(</a>)')
+dates_to_index_body_rx = re.compile(r'(<a[^>]+href=")([^"]+)\.html(".*?>)([^<]+)(</a>)')
 def add_dates_to_index_body(app: Sphinx, pagename: str, templatename: str, context: dict[str, Any], doctree: DocumentNode) -> str | None:
     """
     Insert a span containing the page's date (from metadata).
@@ -239,7 +239,17 @@ def add_dates_to_index_body(app: Sphinx, pagename: str, templatename: str, conte
         pagename_path = Path(html.unescape(pagename))
         doc_name = str(Path(html.unescape(doc)))
         if not (doc_metadata := env.metadata.get(doc_name, {})):
-            doc_metadata = env.metadata.get(str(Path(pagename_path.parent, doc_name)), {})
+            selected_pagename_path: Path
+            # when processing tag index pages, we still want the metadata
+            # for the pages that contain the tag that page represents.
+            # this removes the `_tags/` part from the path so it can be used
+            # to get the data fron `env.metadata`.
+            if pagename_path.parent == Path('_tags'):
+                selected_pagename_path = Path(*Path(doc_name).parts[1:]) # everything except '_tags/'
+            else:
+                selected_pagename_path = Path(pagename_path.parent, doc_name)
+
+            doc_metadata = env.metadata.get(str(selected_pagename_path), {})
 
         date = doc_metadata.get("date")
         if not date:
@@ -248,7 +258,7 @@ def add_dates_to_index_body(app: Sphinx, pagename: str, templatename: str, conte
         new_text = f'<time class="toc-date" datetime="{date}">{date}</time>'
         return f"<span>{new_text}{href}{doc}.html{rest}{text}{tail}</span>"
 
-    context["body"] = rx.sub(repl, body)
+    context["body"] = dates_to_index_body_rx.sub(repl, body)
 
 
 class PageDateDirective(Directive):
@@ -342,6 +352,20 @@ rst_prolog = """
 """
 
 
+toc_to_ol_rx = re.compile(r'<div\s+class="[^"]*\btoctree-wrapper\b[^"]*".*?>.*?</div>', flags=re.RegexFlag.IGNORECASE | re.RegexFlag.DOTALL)
+def change_toc_ul_to_ol(app: Sphinx, pagename: str, templatename: str, context: dict[str, Any], doctree: DocumentNode) -> str | None:
+    if not (body := context.get("body")):
+        return
+
+    def repl(m: re.Match[str]) -> str:
+        block = m.group(0)
+        block = block.replace("<ul ", "<ol ") \
+            .replace("<ul>", "<ol>") \
+            .replace("</ul>", "</ol>")
+        return block
+
+    context["body"] = toc_to_ol_rx.sub(repl, body)
+
 def setup(app: Sphinx) -> None:
     _ = app.add_node(PageDate)
     _ = app.add_directive("pagedate", PageDateDirective)
@@ -351,4 +375,5 @@ def setup(app: Sphinx) -> None:
     _ = app.connect("build-finished", create_zips_for_examples)
     _ = app.connect("doctree-read", collect_meta_dates)
     _ = app.connect('html-page-context', add_dates_to_index_body)
+    _ = app.connect("html-page-context", change_toc_ul_to_ol)
     _ = app.connect("doctree-resolved", add_dates_to_page)
