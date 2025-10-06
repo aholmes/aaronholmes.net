@@ -10,7 +10,7 @@ dependencies = [
     "sphinx-autobuild ~= 2025.8.25",
     "sphinx-copybutton ~= 0.5.2",
     "sphinx-reredirects ~= 1.0.0",
-    "sphinx-sitemap ~= 2.8.0",
+    "sphinx-sitemap ~= 2.9.0",
     "sphinx-toolbox ~= 4.0.0",
     "sphinxcontrib-plantuml ~= 0.30",
 ]
