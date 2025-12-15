@@ -1,0 +1,6 @@
+{
+    "data": [
+        { "ID State": "04000US01", "State": "Alabama", "Year": 2023, "Population": 5054253, "Slug State": "alabama" },
+        { "ID State": "04000US02", "State": "Alaska", "Year": 2023, "Population": 733971, "Slug State": "alaska" }
+    ]
+}
