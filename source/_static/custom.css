@@ -167,3 +167,8 @@ ol:has(.toc-date) ol {
     background-color: white;
     border-radius: 4px;
 }
+
+/* bootstrap overrides */
+button.copy-literal-block {
+  display: none !important;
+}
