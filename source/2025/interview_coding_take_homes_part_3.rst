@@ -11,8 +11,8 @@ Interview Coding Take-Homes: Part 3
 UCLA Health - Population Analysis
 ----------------------------------
 
-This take-home was about the data ingestion and cleaning for the UCLA Health
-population project. The goal was to take messy JSON from an API and turn it
+This take-home was about the data ingestion and cleaning population data.
+The goal was to take messy JSON from an API and turn it
 into a clean CSV, so the analysis and visualization could focus on the real
 questions without getting bogged down in data cleanup.
 
@@ -64,6 +64,7 @@ properties:
         :language: csharp
         :linenos:
         :lines: 15-23
+        :dedent:
         :caption: :download:`PopulationEntry.cs <../_static/files/2025/interview_coding_take_homes_part_3/Analysis/APIModels/PopulationEntry.cs>`
 
 This keeps the mapping explicit and makes it obvious which API field feeds
@@ -82,7 +83,7 @@ while I iterate:
         :language: csharp
         :linenos:
         :lines: 76-81
-        :dedent: 4
+        :dedent:
         :caption: :download:`Api.cs <../_static/files/2025/interview_coding_take_homes_part_3/Analysis/Api.cs>`
 
 On a fresh pull, the JSON hits disk before deserialization. That keeps the
@@ -94,7 +95,7 @@ workflow testable and reinforces a clean separation of concerns:
         :language: csharp
         :linenos:
         :lines: 85-97
-        :dedent: 4
+        :dedent:
         :caption: :download:`Api.cs <../_static/files/2025/interview_coding_take_homes_part_3/Analysis/Api.cs>`
 
 Example input (trimmed)
@@ -173,9 +174,9 @@ see the CSV with my own eyes:
 
 .. code-block:: console
 
-    $ cd population-analysis
-    $ dotnet run --project Analysis/Analysis.csproj
-    Enter a path to write the CSV file to:
+   $ cd population-analysis
+   $ dotnet run --project Analysis/Analysis.csproj
+   Enter a path to write the CSV file to:
 
 I point it at :download:`population.csv <../_static/files/2025/interview_coding_take_homes_part_3/report/population.csv>`,
 inspect the generated CSV/raw pair, and spot-check a few rows against the
@@ -194,10 +195,10 @@ Pull and run it like this:
 .. code-block:: console
 
     $ docker run \
-        -u $(id -u):$(id -g) \
-        -v /path/to/output/directory:/csv_destination \
-        --rm -it \
-        aholmes0/population-analysis:latest
+    >    -u $(id -u):$(id -g) \
+    >    -v /path/to/output/directory:/csv_destination \
+    >    --rm -it \
+    >    aholmes0/population-analysis:latest
 
 This mounts a local directory to ``/csv_destination`` inside the container,
 where the CSV files get written. The ``-u`` flag runs as your user ID to avoid

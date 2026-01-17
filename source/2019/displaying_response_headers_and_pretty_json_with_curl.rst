@@ -28,7 +28,7 @@ We can accomplish this as so.
 .. code-block:: bash
 
     $ curl -s -D "/dev/stderr" -X POST 'http://example.org/some/url' \
-           --data-binary @some-file | python -m json.tool  
+    >       --data-binary @some-file | python -m json.tool
 
 
 This will show a nicely formatted response like this.
@@ -92,7 +92,7 @@ Now I can use this command!
 .. code-block:: bash
 
     $ curl-json-format -X POST 'http://example.org/some/url' \
-          --data-binary @some-file | python -m json.tool  
+    >      --data-binary @some-file | python -m json.tool
 
 |cta|
 |disqus|
