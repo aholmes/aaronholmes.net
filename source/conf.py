@@ -140,8 +140,8 @@ redirects = {
     "author/aaron/index.html": "/index.html"
 }
 
-copybutton_exclude = ".linenos, .gp"
-copybutton_prompt_text = r">>> |\.\.\. |\$ "
+copybutton_exclude = ".linenos"
+copybutton_prompt_text = r"^(?:>|>>>|\.\.\.|\$)\s*"
 copybutton_prompt_is_regexp = True
 copybutton_only_copy_prompt_lines = True
 
