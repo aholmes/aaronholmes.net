@@ -24,10 +24,8 @@ dependencies = [
 requires-dist = [
     { name = "esbonio", specifier = "~=1.1.0" },
     { name = "feedgen", specifier = "~=1.0.0" },
-    { name = "feedgen", specifier = ">=1.0.0" },
     { name = "lxml", specifier = "~=6.0.2" },
     { name = "python-dateutil", specifier = "~=2.9.0.post0" },
-    { name = "python-dateutil", specifier = ">=2.9.0.post0" },
     { name = "sphinx", specifier = "~=9.1.0" },
     { name = "sphinx-autobuild", specifier = "~=2025.8.25" },
     { name = "sphinx-copybutton", specifier = "~=0.5.2" },
