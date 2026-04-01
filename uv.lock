@@ -8,6 +8,9 @@ version = "0.0.1"
 source = { virtual = "." }
 dependencies = [
     { name = "esbonio" },
+    { name = "feedgen" },
+    { name = "lxml" },
+    { name = "python-dateutil" },
     { name = "sphinx" },
     { name = "sphinx-autobuild" },
     { name = "sphinx-copybutton" },
@@ -15,12 +18,16 @@ dependencies = [
     { name = "sphinx-sitemap" },
     { name = "sphinx-toolbox" },
     { name = "sphinxcontrib-plantuml" },
-    { name = "sphinxfeed-lsaffre" },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "esbonio", specifier = "~=1.1.0" },
+    { name = "feedgen", specifier = "~=1.0.0" },
+    { name = "feedgen", specifier = ">=1.0.0" },
+    { name = "lxml", specifier = "~=6.0.2" },
+    { name = "python-dateutil", specifier = "~=2.9.0.post0" },
+    { name = "python-dateutil", specifier = ">=2.9.0.post0" },
     { name = "sphinx", specifier = "~=9.1.0" },
     { name = "sphinx-autobuild", specifier = "~=2025.8.25" },
     { name = "sphinx-copybutton", specifier = "~=0.5.2" },
@@ -28,7 +35,6 @@ requires-dist = [
     { name = "sphinx-sitemap", specifier = "~=2.9.0" },
     { name = "sphinx-toolbox", specifier = "~=4.1.1" },
     { name = "sphinxcontrib-plantuml", specifier = "~=0.30" },
-    { name = "sphinxfeed-lsaffre", specifier = ">=0.3.5" },
 ]
 
 [[package]]
@@ -882,20 +888,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/3b/44/6716b257b0aa6bfd51a1b31665d1c205fb12cb5ad56de752dfa15657de2f/sphinxcontrib_serializinghtml-2.0.0.tar.gz", hash = "sha256:e9d912827f872c029017a53f0ef2180b327c3f7fd23c87229f7a8e8b70031d4d", size = 16080, upload-time = "2024-07-29T01:10:09.332Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/52/a7/d2782e4e3f77c8450f727ba74a8f12756d5ba823d81b941f1b04da9d033a/sphinxcontrib_serializinghtml-2.0.0-py3-none-any.whl", hash = "sha256:6e2cb0eef194e10c27ec0023bfeb25badbbb5868244cf5bc5bdc04e4464bf331", size = 92072, upload-time = "2024-07-29T01:10:08.203Z" },
-]
-
-[[package]]
-name = "sphinxfeed-lsaffre"
-version = "0.3.5"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "feedgen" },
-    { name = "python-dateutil" },
-    { name = "sphinx" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/d3/6f/2b6c9b891eb2234d4940b3be9485847d8148c7436d4d37ea8421e9cb6473/sphinxfeed_lsaffre-0.3.5.tar.gz", hash = "sha256:bb0c80ba003824492b85e278d029994e1a9ffc365b4930489991c825e3b748b0", size = 5613, upload-time = "2024-07-29T06:08:08.534Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/87/05/9c69bd0029340e53f766a3584754dff46adce2252d3ed7aa0feec20360e7/sphinxfeed_lsaffre-0.3.5-py3-none-any.whl", hash = "sha256:b525789000b533f9dd51bdec9b7138ee5bc90d44d885fd98014943ac3875f8fd", size = 6610, upload-time = "2024-07-29T06:08:06.882Z" },
 ]
 
 [[package]]

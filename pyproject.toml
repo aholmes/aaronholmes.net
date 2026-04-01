@@ -13,5 +13,7 @@ dependencies = [
     "sphinx-sitemap ~= 2.9.0",
     "sphinx-toolbox ~= 4.1.1",
     "sphinxcontrib-plantuml ~= 0.30",
-    "sphinxfeed-lsaffre>=0.3.5",
+    "feedgen ~= 1.0.0",
+    "lxml ~= 6.0.2",
+    "python-dateutil ~= 2.9.0.post0"
 ]

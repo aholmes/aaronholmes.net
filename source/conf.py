@@ -36,6 +36,7 @@ BUILD_ENV = (
 
 sys.path.append(str(Path('../lib/sphinx-tags/src').resolve()))
 sys.path.append(str(Path('../lib/sphinx-conestack-theme').resolve()))
+sys.path.append(str(Path('../lib/sphinxfeed-lsaffre').resolve()))
 
 if TYPE_CHECKING:
     class PageDate(InlineNode, Element):
