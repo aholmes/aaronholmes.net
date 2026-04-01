@@ -54,8 +54,6 @@ html_show_sphinx = False
 
 master_doc = "index"
 
-extensions: list[str] = []
-
 templates_path: list[str] = ['_templates']
 exclude_patterns: list[str] = []
 
@@ -94,9 +92,23 @@ extensions: list[str] = [
     "sphinx_tags",
     "sphinx_reredirects",
     "sphinx_sitemap",
-    "sphinxcontrib.plantuml"
+    "sphinxcontrib.plantuml",
+    "sphinxfeed"
 ]
 
+# sphinxfeed
+if BUILD_ENV == BuildEnv.DEVELOPMENT:
+    feed_base_url = "http://127.0.0.1:8000"
+else:
+    feed_base_url = "https://aaronholmes.net"
+
+feed_author = "Aaron Holmes"
+feed_description = project
+feed_field_name = "date"
+feed_use_atom = True
+use_dirhtml = False
+
+# sitemap
 sitemap_url_scheme = "{link}"
 
 # Old blog URLs.
