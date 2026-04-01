@@ -4,6 +4,3 @@
 [submodule "lib/sphinx-conestack-theme"]
 	path = lib/sphinx-conestack-theme
 	url = git@github.com:aholmes/sphinx-conestack-theme.git
-[submodule "lib/sphinxfeed-lsaffre"]
-	path = lib/sphinxfeed-lsaffre
-	url = git@github.com:lsaffre/sphinxfeed.git
