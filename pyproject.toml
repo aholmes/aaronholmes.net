@@ -14,6 +14,6 @@ dependencies = [
     "sphinx-toolbox >= 4.1.1,< 4.3.0",
     "sphinxcontrib-plantuml ~= 0.31",
     "feedgen ~= 1.0.0",
-    "lxml~=6.1.1",
+    "lxml >= 6.0.2,< 6.2.0",
     "python-dateutil ~= 2.9.0.post0"
 ]
