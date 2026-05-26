@@ -112,12 +112,16 @@ use_dirhtml = False
 # sitemap
 sitemap_url_scheme = "{link}"
 
-# Old blog URLs.
-# The index.html is used because CloudFlare munges the
-# redirect URL to include it. Without it, Sphinx isn't
-# able to build the old "fake" pages that are used for
-# redirects.
 redirects = {
+    # Static redirects for ease of use for some files/URLs
+    # Use /qrcodestudio
+    "qrcodestudio/index.html": "/_static/files/2026/browser_based_vcard_qr_code_generator/contact-qr-studio.html",
+
+    # Old blog URLs.
+    # The index.html is used because CloudFlare munges the
+    # redirect URL to include it. Without it, Sphinx isn't
+    # able to build the old "fake" pages that are used for
+    # redirects.
     "2024-08-08_MakingACopperWireTree_BoutrosLab/index.html": "/2024/making_a_copper_wire_tree.html",
     "2022-09-22_WinterIsCanning_BoutrosLab/index.html": "/2022/winter_is_canning_2022.html",
     "2022-04-07_PairProgramming_BoutrosLab/index.html": "/2022/pair_programming.html",
