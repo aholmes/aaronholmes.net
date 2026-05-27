@@ -1,7 +1,8 @@
-*Aaron Holmes is a software engineer with 20 years of experience in
-enterprise softare development, entertainment industry, and academia.
-Outside of work, his interests include IoT, smart home,
-hardware and electronics, gardening, playing drums, and more.*
+*Aaron Holmes spent two decades as a software engineer across enterprise development,
+entertainment, and academia before pivoting into custom apparel as the
+owner/operator of a Big Frog Custom T-Shirts franchise in West Los Angeles.
+Outside of work, his interests include IoT, smart home, hardware and electronics,
+gardening, playing drums, and more.*
 
 `[Publications] <https://papers.aaronholmes.net>`_ —
 `[GitHub] <https://github.com/aholmes>`_ —
