@@ -115,7 +115,7 @@ sitemap_url_scheme = "{link}"
 redirects = {
     # Static redirects for ease of use for some files/URLs
     # Use /qrcodestudio
-    "qrcodestudio/index.html": "/_static/files/2026/browser_based_vcard_qr_code_generator/contact-qr-studio.html",
+    "qrcodestudio/index.html": "/_static/files/2026/browser_based_vcard_qr_code_generator/qr-studio.html",
 
     # Old blog URLs.
     # The index.html is used because CloudFlare munges the

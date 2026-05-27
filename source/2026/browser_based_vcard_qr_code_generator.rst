@@ -17,7 +17,7 @@ you type ever leaves your device.
 Opening It
 ----------
 
-`Open the generator </_static/files/2026/browser_based_vcard_qr_code_generator/contact-qr-studio.html>`__
+`Open the generator </_static/files/2026/browser_based_vcard_qr_code_generator/qr-studio.html>`__
 in your browser, or access it right in this page, or download that file and open a local copy - it behaves the
 same either way, since the whole thing runs client-side. The contact form is on
 the left; the QR code, the download buttons, and the render options are on the
@@ -26,7 +26,7 @@ no "generate" button to press.
 
 .. raw:: html
 
-    <iframe src="/_static/files/2026/browser_based_vcard_qr_code_generator/contact-qr-studio.html" style="width:100%;height:500px;"></iframe>
+    <iframe src="/_static/files/2026/browser_based_vcard_qr_code_generator/qr-studio.html" style="width:100%;height:500px;"></iframe>
 
 
 Entering a Contact

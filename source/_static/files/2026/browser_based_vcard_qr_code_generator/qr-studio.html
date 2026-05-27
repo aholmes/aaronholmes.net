@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>vCard · QR Studio</title>
+<title>QR Studio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,900&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -129,6 +129,17 @@
   .seg button:last-child{border-right:0}
   .seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
   input[type=range]{padding:0;accent-color:var(--frog-deep)}
+
+  .modeswitch{display:flex;flex-direction:column;gap:7px}
+  .modeswitch-label{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding-left:2px}
+  .tabs{display:grid;grid-template-columns:1fr 1fr;gap:5px;padding:5px;border:1px solid var(--line);background:#fbfaf4;border-radius:12px;box-shadow:inset 0 1px 0 rgba(22,24,15,.03)}
+  .tabs button{appearance:none;border:0;background:transparent;font:inherit;font-size:14px;font-weight:700;color:var(--muted);padding:12px 14px;cursor:pointer;border-radius:9px;display:inline-flex;align-items:center;justify-content:center;gap:9px;letter-spacing:.01em;transition:background .15s, color .15s, transform .12s, box-shadow .15s}
+  .tabs button svg{width:17px;height:17px;flex:0 0 auto;stroke-width:2.1}
+  .tabs button[aria-selected="true"]{background:var(--ink);color:var(--paper);box-shadow:0 6px 14px -8px rgba(22,24,15,.55), inset 0 1px 0 rgba(255,255,255,.08)}
+  .tabs button:hover:not([aria-selected="true"]){background:rgba(22,24,15,.06);color:var(--ink)}
+  .tabs button:active{transform:translateY(1px)}
+  .tabpanel[hidden]{display:none}
+  .btns [hidden]{display:none}
   .swatches{display:flex;gap:8px;align-items:center}
   .swatch{width:26px;height:26px;border-radius:7px;border:1px solid var(--line);cursor:pointer;padding:0}
   input[type=color]{width:38px;height:30px;padding:2px;border-radius:8px;cursor:pointer}
@@ -190,15 +201,30 @@
         <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="7" height="7" rx="1.4" stroke="currentColor" stroke-width="2"/><rect x="2" y="15" width="7" height="7" rx="1.4" stroke="currentColor" stroke-width="2"/><rect x="15" y="2" width="7" height="7" rx="1.4" stroke="currentColor" stroke-width="2"/><rect x="15" y="15" width="3" height="3" fill="currentColor"/><rect x="19" y="19" width="3" height="3" fill="currentColor"/><rect x="15" y="19" width="2" height="2" fill="currentColor"/></svg>
       </span>
       <div>
-        <h1>vCard <em>QR Studio</em></h1>
-        <div class="sub">Type a contact &rarr; get a scannable vCard QR as SVG.</div>
+        <h1>QR <em>Studio</em></h1>
+        <div class="sub">Build scannable QR codes &mdash; vCard or URL &mdash; as SVG.</div>
       </div>
     </div>
-    <span class="tag">offline &middot; svg &middot; vCard 3.0</span>
+    <span class="tag">offline &middot; svg</span>
   </header>
 
   <div class="grid">
-    <form class="stack" id="form" autocomplete="off">
+    <div class="stack" id="leftCol">
+      <div class="modeswitch">
+        <span class="modeswitch-label">Build a QR for &mdash;</span>
+        <nav class="tabs" id="modeTabs" role="tablist" aria-label="QR type">
+          <button type="button" role="tab" data-mode="vcard" aria-selected="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M14 9h4M14 13h3M5.5 17c.8-1.6 2.5-2 3.5-2s2.7.4 3.5 2"/></svg>
+            Contact (vCard)
+          </button>
+          <button type="button" role="tab" data-mode="url" aria-selected="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.72"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.72"/></svg>
+            URL
+          </button>
+        </nav>
+      </div>
+
+      <form class="stack tabpanel" id="form-vcard" autocomplete="off" role="tabpanel" aria-label="vCard fields">
       <section class="panel">
         <h2>Identity</h2>
         <div class="body">
@@ -262,7 +288,25 @@
         <span class="hint">Auto-saves in this browser as you type. Nothing leaves your device.</span>
         <button type="button" class="addrow danger" id="clearAll">Clear all fields</button>
       </div>
-    </form>
+      </form>
+
+      <form class="stack tabpanel" id="form-url" autocomplete="off" role="tabpanel" aria-label="URL fields" hidden>
+        <section class="panel">
+          <h2>Destination</h2>
+          <div class="body">
+            <div class="field">
+              <label for="urlValue">URL</label>
+              <input id="urlValue" type="url" inputmode="url" placeholder="https://www.bigfrog.com/westla" autocomplete="off" spellcheck="false">
+            </div>
+            <span class="hint">Supports <b>https://</b>, <b>mailto:</b>, <b>tel:</b>, <b>sms:</b>, <b>geo:</b>, and custom app schemes.</span>
+          </div>
+        </section>
+        <div class="clearbar">
+          <span class="hint">Auto-saves in this browser as you type. Nothing leaves your device.</span>
+          <button type="button" class="addrow danger" id="clearUrl">Clear URL</button>
+        </div>
+      </form>
+    </div>
 
     <div class="preview-col">
       <div class="qrcard">
@@ -288,8 +332,8 @@
           </div>
           <div class="line">
             <label for="scale">Module&nbsp;px</label>
-            <input type="range" id="scale" min="4" max="20" value="10" style="flex:1;min-width:120px">
-            <span class="scaleval" id="scaleval">10 px</span>
+            <input type="range" id="scale" min="4" max="40" value="14" style="flex:1;min-width:120px">
+            <span class="scaleval" id="scaleval">14 px</span>
           </div>
           <div class="line">
             <label>Color</label>
@@ -590,7 +634,10 @@
   }
   // =====================================================================
 
-  var ecc="M", scale=10, fg="#16180f", transparent=false, lastSvg=null, lastVcard="";
+  var ecc="M", scale=14, fg="#16180f", transparent=false, lastSvg=null, lastVcard="";
+  var mode="vcard";
+  var MODE_KEY = "qr-studio:mode:v1";
+  var URL_KEY = "qr-studio:url:v1";
 
   $("#ecc").addEventListener("click", function(e){
     var b=e.target.closest("[data-ecc]"); if(!b) return;
@@ -606,23 +653,78 @@
   var frame=$("#qrframe"), tmr=null;
   function update(){ clearTimeout(tmr); tmr=setTimeout(run, 80); }
   function run(){
-    var c=gather();
-    lastVcard=buildVCard(c);
-    $("#vcardOut").textContent=lastVcard;
-    saveState();
+    var payloadText, payloadIsEmpty;
+    if(mode === "vcard"){
+      var c=gather();
+      lastVcard=buildVCard(c);
+      saveState();
+      payloadText = lastVcard;
+      // vCard is never "empty" — even a blank form produces a valid skeleton — so always render
+      payloadIsEmpty = false;
+      $("#vcardOut").textContent = lastVcard;
+    } else {
+      var u = $("#urlValue").value.trim();
+      saveUrlState();
+      payloadText = u;
+      payloadIsEmpty = !u;
+      $("#vcardOut").textContent = u || "(empty)";
+    }
     frame.classList.toggle("solid", !transparent);
-    var opts={ type:"svg", errorCorrectionLevel:ecc, margin:4, scale:scale,
-      color:{ dark: fg+"ff", light: transparent ? "#ffffff00" : "#ffffffff" } };
-    QRCode.toString(lastVcard, opts, function(err, svg){
-      if(err){
-        lastSvg=null;
-        frame.innerHTML='<div class="err">'+( /too (big|long)|code length|capacity/i.test(err.message)
-          ? "Too much data for this error-correction level. Lower it (try L) or shorten a field."
-          : escAttr(err.message) )+'</div>';
-        $("#dlSvg").disabled=true; return;
-      }
-      lastSvg=svg; frame.innerHTML=svg; $("#dlSvg").disabled=false;
+
+    if(payloadIsEmpty){
+      lastSvg=null;
+      frame.innerHTML='<div class="err" style="color:var(--muted);font-weight:500">Enter a URL to generate a QR code.</div>';
+      $("#dlSvg").disabled=true; return;
+    }
+
+    // node-qrcode's built-in SVG renderer emits a single path of stroked horizontal
+    // lines with stroke-width = 1 module unit, and tags it with shape-rendering="crispEdges".
+    // That combination rasterizes catastrophically at small sizes: the stroke snapping
+    // either merges adjacent rows into solid blobs or drops strokes entirely. So we skip
+    // the built-in renderer, grab the raw module matrix via QRCode.create(), and emit our
+    // own SVG using one filled rectangle per dark module (in path form for compactness).
+    // No strokes, no crispEdges, anti-aliasing on by default — matches how Bitly, Google
+    // Charts, and other QR generators output SVG that holds up at any size.
+    var qr;
+    try {
+      qr = QRCode.create(payloadText, { errorCorrectionLevel: ecc });
+    } catch(err){
+      lastSvg=null;
+      frame.innerHTML='<div class="err">'+( /too (big|long)|code length|capacity|amount of data/i.test(err.message)
+        ? "Too much data for this error-correction level. Lower it (try L) or shorten a field."
+        : escAttr(err.message) )+'</div>';
+      $("#dlSvg").disabled=true; return;
+    }
+    var svg = svgFromMatrix(qr.modules, {
+      margin: 4, scale: scale, dark: fg, light: "#ffffff", transparent: transparent
     });
+    lastSvg=svg; frame.innerHTML=svg; $("#dlSvg").disabled=false;
+  }
+
+  function svgFromMatrix(modules, opts){
+    var size = modules.size;
+    var data = modules.data;
+    var margin = (opts.margin != null) ? opts.margin : 4;
+    var modulePx = opts.scale || 14;
+    var dark = opts.dark || "#000";
+    var light = opts.light || "#fff";
+    var transparent = !!opts.transparent;
+    var vb = size + 2 * margin;
+    var px = vb * modulePx;
+    var d = "";
+    for (var r = 0; r < size; r++){
+      var rowOff = r * size;
+      for (var c = 0; c < size; c++){
+        if (data[rowOff + c]){
+          d += "M" + (c + margin) + " " + (r + margin) + "h1v1h-1z";
+        }
+      }
+    }
+    var bg = transparent ? "" :
+      '<rect width="' + vb + '" height="' + vb + '" fill="' + light + '"/>';
+    return '<svg xmlns="http://www.w3.org/2000/svg" width="' + px +
+      '" height="' + px + '" viewBox="0 0 ' + vb + ' ' + vb + '">' +
+      bg + '<path fill="' + dark + '" d="' + d + '"/></svg>';
   }
 
   function download(text, filename, mime){
@@ -636,12 +738,30 @@
     var n=($("#firstName").value+" "+$("#lastName").value).trim().toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
     return n||"contact";
   }
-  $("#dlSvg").addEventListener("click", function(){ if(lastSvg){ download(lastSvg, slug()+"-qr.svg", "image/svg+xml"); toast("SVG downloaded"); } });
+  function urlSlug(){
+    var u = $("#urlValue").value.trim();
+    if(!u) return "url";
+    try {
+      var p = new URL(u);
+      var host = (p.hostname||"").replace(/^www\./,"");
+      var path = (p.pathname||"").replace(/\/$/,"");
+      var s = (host + path).toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+      return s || "url";
+    } catch(e){
+      return u.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,40) || "url";
+    }
+  }
+  function currentSlug(){ return mode === "vcard" ? slug() : urlSlug(); }
+
+  $("#dlSvg").addEventListener("click", function(){ if(lastSvg){ download(lastSvg, currentSlug()+"-qr.svg", "image/svg+xml"); toast("SVG downloaded"); } });
   $("#dlVcf").addEventListener("click", function(){ download(lastVcard, slug()+".vcf", "text/vcard;charset=utf-8"); toast(".vcf downloaded"); });
   $("#copy").addEventListener("click", function(){
-    var done=function(){ toast("vCard copied"); };
-    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(lastVcard).then(done, fallback); } else fallback();
-    function fallback(){ var ta=document.createElement("textarea"); ta.value=lastVcard; document.body.appendChild(ta); ta.select(); try{document.execCommand("copy");}catch(e){} ta.remove(); done(); }
+    var text = (mode === "vcard") ? lastVcard : $("#urlValue").value.trim();
+    if(!text) return;
+    var label = (mode === "vcard") ? "vCard copied" : "URL copied";
+    var done=function(){ toast(label); };
+    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done, fallback); } else fallback();
+    function fallback(){ var ta=document.createElement("textarea"); ta.value=text; document.body.appendChild(ta); ta.select(); try{document.execCommand("copy");}catch(e){} ta.remove(); done(); }
   });
 
   var toastEl=$("#toast"), toastTmr=null;
@@ -672,7 +792,7 @@
   function setVal(id, v){ var el=$("#"+id); if(el) el.value = (v==null?"":v); }
   function applyRender(s){
     ecc = s.ecc || "M";
-    scale = (typeof s.scale==="number") ? s.scale : 10;
+    scale = (typeof s.scale==="number") ? s.scale : 14;
     fg = s.fg || "#16180f";
     transparent = !!s.transparent;
     $("#ecc").querySelectorAll("button").forEach(function(x){ x.setAttribute("aria-pressed", x.getAttribute("data-ecc")===ecc?"true":"false"); });
@@ -698,10 +818,51 @@
   $("#clearAll").addEventListener("click", function(){
     if(confirm("Clear all fields? This erases the contact saved in this browser.")) clearAll();
   });
+  // ===== mode switching (vcard <-> url) =====
+  var panelVcard = $("#form-vcard"), panelUrl = $("#form-url"), modeTabs = $("#modeTabs");
+  var copyBtn = $("#copy"), dlVcfBtn = $("#dlVcf");
+  var payloadSummary = document.querySelector("details.payload > summary");
+
+  function setMode(m){
+    if(m !== "vcard" && m !== "url") m = "vcard";
+    mode = m;
+    panelVcard.hidden = (m !== "vcard");
+    panelUrl.hidden = (m !== "url");
+    modeTabs.querySelectorAll("[data-mode]").forEach(function(b){
+      b.setAttribute("aria-selected", b.dataset.mode === m ? "true" : "false");
+    });
+    dlVcfBtn.hidden = (m !== "vcard");
+    copyBtn.textContent = (m === "vcard") ? "Copy vCard" : "Copy URL";
+    if(payloadSummary) payloadSummary.textContent = (m === "vcard") ? "vCard payload" : "URL payload";
+    try{ localStorage.setItem(MODE_KEY, m); }catch(e){}
+    run();
+  }
+  modeTabs.addEventListener("click", function(e){
+    var b = e.target.closest("[data-mode]");
+    if(!b) return;
+    setMode(b.dataset.mode);
+  });
+
+  function saveUrlState(){ try{ localStorage.setItem(URL_KEY, $("#urlValue").value); }catch(e){} }
+  $("#clearUrl").addEventListener("click", function(){
+    if(!$("#urlValue").value || confirm("Clear the URL?")){
+      $("#urlValue").value = "";
+      try{ localStorage.removeItem(URL_KEY); }catch(e){}
+      run(); toast("Cleared");
+    }
+  });
+
+  // ===== init =====
   var saved = loadState();
   if(saved) applyState(saved); else buildRows(DEFAULT_PHONES, DEFAULT_EMAILS);
-  $("#form").addEventListener("input", update);
-  run();
+  try{
+    var savedUrl = localStorage.getItem(URL_KEY);
+    if(savedUrl != null) $("#urlValue").value = savedUrl;
+    var savedMode = localStorage.getItem(MODE_KEY);
+    if(savedMode === "vcard" || savedMode === "url") mode = savedMode;
+  }catch(e){}
+  $("#leftCol").addEventListener("input", update);
+  setMode(mode);
 })();
 </script>
 </body>
