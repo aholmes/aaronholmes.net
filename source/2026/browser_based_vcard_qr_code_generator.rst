@@ -10,7 +10,7 @@ Browser-Based vCard QR Code Generator
 
 This is a single HTML file that turns contact details into a
 `vCard <https://datatracker.ietf.org/doc/html/rfc2426>`_ QR code and saves it
-as a scalable SVG — handy for business cards, signage, or anything headed to
+as a scalable SVG - handy for business cards, signage, or anything headed to
 print. It runs entirely in your browser with no internet connection, so nothing
 you type ever leaves your device.
 
@@ -18,11 +18,16 @@ Opening It
 ----------
 
 `Open the generator </_static/files/2026/browser_based_vcard_qr_code_generator/contact-qr-studio.html>`__
-in your browser, or download that file and open a local copy — it behaves the
+in your browser, or access it right in this page, or download that file and open a local copy - it behaves the
 same either way, since the whole thing runs client-side. The contact form is on
 the left; the QR code, the download buttons, and the render options are on the
-right. The code re-renders automatically whenever you change a field — there is
+right. The code re-renders automatically whenever you change a field - there is
 no "generate" button to press.
+
+.. raw:: html
+
+    <iframe src="/_static/files/2026/browser_based_vcard_qr_code_generator/contact-qr-studio.html" style="width:100%;height:500px;"></iframe>
+
 
 Entering a Contact
 ------------------
@@ -40,7 +45,7 @@ remove it. Each row has a type, an optional custom label, and a primary star.
 Types and Labels
 ^^^^^^^^^^^^^^^^^
 
-Pick a **type** from the dropdown — Mobile, Work, Home, and so on. To give an
+Pick a **type** from the dropdown - Mobile, Work, Home, and so on. To give an
 entry a custom name like *Store*, type it into the **label** field on the row.
 
 For an entry you really want to read as its label, set the type to
@@ -65,12 +70,12 @@ Render Options
 
 Below the QR code:
 
-* **Error correction** (L/M/Q/H) — higher levels survive more wear and dirt but
+* **Error correction** (L/M/Q/H) - higher levels survive more wear and dirt but
   produce a denser code. ``M`` is a sensible default; drop to ``L`` if a long
   contact won't fit.
-* **Module px** — the pixel size of each square. The output is SVG, so it stays
+* **Module px** - the pixel size of each square. The output is SVG, so it stays
   sharp at any size; this only sets the nominal dimensions.
-* **Color** — choose a foreground color, or use the Ink and Big Frog green
+* **Color** - choose a foreground color, or use the Ink and Big Frog green
   presets. **Transparent bg** removes the white background, which is useful when
   placing the code over artwork.
 
@@ -83,14 +88,14 @@ and the saved copy.
 
 **Note:** the saved copy is tied to the specific browser and file location.
 Moving or renaming the file starts fresh, and some browsers are strict about
-storage on ``file://`` URLs — serving the file over ``http`` avoids that.
+storage on ``file://`` URLs - serving the file over ``http`` avoids that.
 
 Exporting
 ---------
 
-* **Download SVG** — the QR code as a vector file, for print or design tools.
-* **Download .vcf** — the raw contact card, to import or share directly.
-* **Copy vCard** — copies the text payload to your clipboard.
+* **Download SVG** - the QR code as a vector file, for print or design tools.
+* **Download .vcf** - the raw contact card, to import or share directly.
+* **Copy vCard** - copies the text payload to your clipboard.
 
 Before You Print
 ----------------
@@ -98,7 +103,7 @@ Before You Print
 **Always scan and import the finished code on a real phone before sending
 anything to print.** A code that looks fine but imports the wrong details is
 worse than none at all. One harmless quirk to expect: on Windows the country
-flags appear as two-letter codes instead of emoji — the dial code is always
+flags appear as two-letter codes instead of emoji - the dial code is always
 shown beside them, so nothing is actually missing.
 
 |cta|
