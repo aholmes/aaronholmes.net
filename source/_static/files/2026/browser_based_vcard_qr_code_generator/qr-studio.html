@@ -140,6 +140,70 @@
   .tabs button:active{transform:translateY(1px)}
   .tabpanel[hidden]{display:none}
   .btns [hidden]{display:none}
+
+  .iconpicker{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:6px}
+  .iconpicker button{appearance:none;border:1px solid var(--line);background:#fbfaf4;border-radius:9px;cursor:pointer;padding:8px 4px 6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:var(--muted);font:inherit;font-size:10.5px;font-weight:600;letter-spacing:.01em;transition:background .12s, color .12s, border-color .12s, box-shadow .12s;min-height:56px}
+  .iconpicker button:hover{color:var(--ink);border-color:#c8c5b1}
+  .iconpicker button[aria-checked="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink);box-shadow:0 4px 10px -6px rgba(22,24,15,.5)}
+  .iconpicker button svg{width:22px;height:22px;display:block}
+  .iconpicker button .none-dash{width:18px;height:2px;background:currentColor;border-radius:2px;display:block;margin:10px 0}
+  .iconpicker button .lbl{display:block;line-height:1.1}
+  .iconpicker button .thumb{width:22px;height:22px;border-radius:4px;background-position:center;background-size:contain;background-repeat:no-repeat;background-color:#fff;border:1px solid rgba(0,0,0,.06)}
+
+  /* Sub-tabs that serve as the panel header (LOGO / SHAPE / FRAME) */
+  .subtabs{display:grid;grid-template-columns:repeat(3, 1fr);gap:4px;padding:4px;border:1px solid var(--line);background:#fbfaf4;border-radius:11px;margin:-4px -4px 14px -4px}
+  .subtabs button{appearance:none;border:0;background:transparent;font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:700;color:var(--muted);padding:10px 8px;cursor:pointer;border-radius:8px;letter-spacing:.18em;transition:background .15s, color .15s, box-shadow .15s}
+  .subtabs button[aria-selected="true"]{background:var(--ink);color:var(--paper);box-shadow:0 4px 10px -6px rgba(22,24,15,.5)}
+  .subtabs button:hover:not([aria-selected="true"]){color:var(--ink)}
+  .subpanel[hidden]{display:none}
+  .subpanel{display:flex;flex-direction:column;gap:14px}
+
+  /* Color picker — popover */
+  .colorpop-trigger{appearance:none;border:1px solid var(--line);background:#fbfaf4;cursor:pointer;padding:5px 9px 5px 5px;border-radius:8px;display:inline-flex;align-items:center;gap:8px;font:inherit;font-size:12px;font-weight:600;color:var(--ink);font-family:"JetBrains Mono",monospace}
+  .colorpop-trigger .swatch{width:22px;height:22px;border-radius:5px;border:1px solid rgba(0,0,0,.12);display:block;flex:0 0 auto}
+  .colorpop-trigger:hover{border-color:#c8c5b1}
+  .colorpop{position:absolute;z-index:100;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;box-shadow:0 14px 32px -10px rgba(22,24,15,.35);width:208px}
+  .colorpop[hidden]{display:none}
+  .colorpop .sv-area{position:relative;width:100%;height:140px;border-radius:6px;cursor:crosshair;margin-bottom:10px;touch-action:none;overflow:hidden}
+  .colorpop .sv-area .sv-white{position:absolute;inset:0;background:linear-gradient(to right, #fff, rgba(255,255,255,0))}
+  .colorpop .sv-area .sv-black{position:absolute;inset:0;background:linear-gradient(to top, #000, rgba(0,0,0,0))}
+  .colorpop .sv-pin{position:absolute;width:12px;height:12px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.55);transform:translate(-50%, -50%);pointer-events:none;z-index:3}
+  .colorpop .hue-area{position:relative;width:100%;height:14px;border-radius:7px;cursor:pointer;background:linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);margin-bottom:10px;touch-action:none}
+  .colorpop .hue-pin{position:absolute;width:6px;height:18px;top:-2px;border-radius:3px;border:2px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.45);transform:translateX(-50%);pointer-events:none;background:transparent}
+  .colorpop .hex-row{display:flex;gap:6px;align-items:center}
+  .colorpop .hex-row .pre{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--muted);font-weight:600}
+  .colorpop .hex-input{flex:1;padding:6px 8px;border:1px solid var(--line);border-radius:6px;font-family:"JetBrains Mono",monospace;font-size:12px;text-transform:uppercase;background:#fbfaf4;color:var(--ink)}
+  .colorpop .hex-input:focus{outline:none;border-color:var(--ink);background:#fff}
+
+  /* Shape & Frame pickers */
+  .shapepicker, .framepicker{display:grid;grid-template-columns:repeat(auto-fill,minmax(76px,1fr));gap:6px}
+  .shapepicker button, .framepicker button{appearance:none;border:1px solid var(--line);background:#fbfaf4;border-radius:9px;cursor:pointer;padding:8px 4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--muted);font:inherit;font-size:10.5px;font-weight:600;letter-spacing:.01em;transition:background .12s, color .12s, border-color .12s, box-shadow .12s;min-height:68px}
+  .shapepicker button:hover, .framepicker button:hover{color:var(--ink);border-color:#c8c5b1}
+  .shapepicker button[aria-checked="true"], .framepicker button[aria-checked="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink);box-shadow:0 4px 10px -6px rgba(22,24,15,.5)}
+  .shapepicker button[aria-checked="true"] svg .ink,
+  .framepicker button[aria-checked="true"] svg .ink{fill:var(--paper);stroke:var(--paper)}
+  .shapepicker .preview, .framepicker .preview{width:32px;height:32px;display:block}
+
+  /* Inline number input paired with slider */
+  .numval{width:42px;text-align:center;padding:4px 4px;border:1px solid var(--line);border-radius:6px;font:inherit;font-family:"JetBrains Mono",monospace;font-size:12px;background:#fbfaf4;color:var(--ink);-moz-appearance:textfield}
+  .numval::-webkit-outer-spin-button,.numval::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  .numval:focus{outline:none;border-color:var(--ink);background:#fff}
+
+  /* Custom-image upload button (separate, prominent) */
+  .uploadbtn{appearance:none;border:1.5px dashed var(--line);background:transparent;cursor:pointer;padding:10px 12px;border-radius:9px;display:flex;align-items:center;justify-content:center;gap:8px;color:var(--muted);font:inherit;font-size:12.5px;font-weight:600;letter-spacing:.01em;width:100%;transition:border-color .15s, color .15s, background .15s}
+  .uploadbtn:hover{border-color:#a8a48c;color:var(--ink);background:#fbfaf4}
+  .uploadbtn svg{width:16px;height:16px;flex:0 0 auto}
+
+  /* Text input for frame text */
+  .frametext-input{flex:1;padding:7px 10px;border:1px solid var(--line);border-radius:7px;font:inherit;font-size:13px;background:#fbfaf4;color:var(--ink);min-width:120px}
+  .frametext-input:focus{outline:none;border-color:var(--ink);background:#fff}
+
+  /* Group divider inside design subpanels */
+  .group-sep{height:0;border:0;border-top:1px dashed var(--line);margin:4px 0 2px 0}
+
+  /* Reset design button (small, subdued) */
+  .resetbtn{appearance:none;border:1px solid var(--line);background:transparent;cursor:pointer;padding:7px 12px;border-radius:7px;font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:700;letter-spacing:.15em;color:var(--muted);transition:background .15s, color .15s, border-color .15s;align-self:flex-end;margin-top:4px}
+  .resetbtn:hover{background:#fbfaf4;color:#a83333;border-color:#a83333}
   .swatches{display:flex;gap:8px;align-items:center}
   .swatch{width:26px;height:26px;border-radius:7px;border:1px solid var(--line);cursor:pointer;padding:0}
   input[type=color]{width:38px;height:30px;padding:2px;border-radius:8px;cursor:pointer}
@@ -315,6 +379,7 @@
           <button class="act" id="dlSvg" type="button">Download SVG</button>
           <button class="act ghost" id="dlVcf" type="button">Download .vcf</button>
           <button class="act ghost" id="copy" type="button">Copy vCard</button>
+          <button type="button" class="addrow danger" id="resetDesign" style="margin-left:auto">Reset design</button>
         </div>
       </div>
 
@@ -331,19 +396,103 @@
             </span>
           </div>
           <div class="line">
-            <label for="scale">Module&nbsp;px</label>
-            <input type="range" id="scale" min="4" max="40" value="14" style="flex:1;min-width:120px">
-            <span class="scaleval" id="scaleval">14 px</span>
-          </div>
-          <div class="line">
             <label>Color</label>
-            <div class="swatches">
-              <input type="color" id="fg" value="#16180f" aria-label="Foreground color">
-              <button class="swatch" style="background:#16180f" data-color="#16180f" title="Ink"></button>
-              <button class="swatch" style="background:#1c6a36" data-color="#1c6a36" title="Big Frog green"></button>
-            </div>
+            <button type="button" class="colorpop-trigger" id="fgTrigger" aria-label="Foreground color">
+              <span class="swatch" id="fgSwatch" style="background:#16180f"></span>
+              <span id="fgHexLabel">#16180F</span>
+            </button>
             <label class="toggle"><input type="checkbox" id="transparent"> Transparent bg</label>
           </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="body opts">
+          <nav class="subtabs" id="designTabs" role="tablist" aria-label="Design controls">
+            <button type="button" role="tab" data-design="logo" aria-selected="true">LOGO</button>
+            <button type="button" role="tab" data-design="shape" aria-selected="false">SHAPE</button>
+            <button type="button" role="tab" data-design="frame" aria-selected="false">FRAME</button>
+          </nav>
+
+          <div class="subpanel" id="panel-logo" role="tabpanel" aria-label="Center logo">
+            <div class="iconpicker" id="iconPicker" role="radiogroup" aria-label="Center logo"></div>
+            <input type="file" id="iconFile" accept="image/png,image/jpeg,image/gif,image/webp,image/svg+xml" hidden>
+            <button type="button" class="uploadbtn" id="uploadBtn" aria-label="Upload custom image">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span id="uploadBtnLabel">Upload custom image</span>
+            </button>
+            <div class="line">
+              <label for="logoSize">Size</label>
+              <input type="range" id="logoSize" min="10" max="32" value="18" style="flex:1;min-width:120px">
+              <input type="number" class="numval" id="logoSizeVal" min="10" max="32" value="18">
+            </div>
+            <div class="line">
+              <label>Background</label>
+              <span class="seg" id="logoShape" role="group" aria-label="Logo background shape">
+                <button type="button" data-shape="square" aria-pressed="true">Square</button>
+                <button type="button" data-shape="circle">Circle</button>
+              </span>
+            </div>
+          </div>
+
+          <div class="subpanel" id="panel-shape" role="tabpanel" aria-label="Module shape" hidden>
+            <div class="shapepicker" id="shapePicker" role="radiogroup" aria-label="Module shape"></div>
+          </div>
+
+          <div class="subpanel" id="panel-frame" role="tabpanel" aria-label="Frame" hidden>
+            <div class="framepicker" id="framePicker" role="radiogroup" aria-label="Frame style"></div>
+            <div class="line" id="frameColorLine">
+              <label>Color</label>
+              <button type="button" class="colorpop-trigger" id="frameColorTrigger" aria-label="Frame color">
+                <span class="swatch" id="frameColorSwatch" style="background:#000000"></span>
+                <span id="frameColorHexLabel">#000000</span>
+              </button>
+            </div>
+            <div class="line" id="framePaddingLine">
+              <label for="framePadding">Padding</label>
+              <input type="range" id="framePadding" min="0" max="6" value="0" step="1" style="flex:1;min-width:120px">
+              <input type="number" class="numval" id="framePaddingVal" min="0" max="6" value="0">
+            </div>
+            <div class="line" id="frameThicknessLine">
+              <label for="frameThickness">Thickness</label>
+              <input type="range" id="frameThickness" min="0" max="4" value="1" step="1" style="flex:1;min-width:120px">
+              <input type="number" class="numval" id="frameThicknessVal" min="0" max="4" value="1">
+            </div>
+            <hr class="group-sep" id="frameTextSep">
+            <div class="line" id="frameTextLine">
+              <label for="frameText">Text</label>
+              <input type="text" class="frametext-input" id="frameText" placeholder="e.g. SCAN ME" maxlength="40">
+            </div>
+            <div class="line" id="frameTextFontLine">
+              <label>Font</label>
+              <span class="seg" id="frameTextFont" role="group" aria-label="Text font">
+                <button type="button" data-font="sans" aria-pressed="true">Sans</button>
+                <button type="button" data-font="serif">Serif</button>
+                <button type="button" data-font="mono">Mono</button>
+              </span>
+            </div>
+            <div class="line" id="frameTextPlacementLine">
+              <label>Placement</label>
+              <span class="seg" id="frameTextPlacement" role="group" aria-label="Text placement">
+                <button type="button" data-placement="outside" aria-pressed="true">Outside</button>
+                <button type="button" data-placement="inside">Inside</button>
+              </span>
+            </div>
+            <div class="line" id="frameTextPositionLine">
+              <label>Position</label>
+              <span class="seg" id="frameTextPosition" role="group" aria-label="Text position">
+                <button type="button" data-position="top">Top</button>
+                <button type="button" data-position="bottom" aria-pressed="true">Bottom</button>
+              </span>
+            </div>
+            <div class="line" id="frameTextSizeLine">
+              <label for="frameTextSize">Size</label>
+              <input type="range" id="frameTextSize" min="1.5" max="8" value="3.5" step="0.1" style="flex:1;min-width:120px">
+              <input type="number" class="numval" id="frameTextSizeVal" min="1.5" max="8" value="3.5" step="0.1">
+            </div>
+          </div>
+        </div>
+      </section>
         </div>
       </section>
 
@@ -634,10 +783,129 @@
   }
   // =====================================================================
 
-  var ecc="M", scale=14, fg="#16180f", transparent=false, lastSvg=null, lastVcard="";
+  var ecc="M", fg="#16180f", transparent=false, lastSvg=null, lastVcard="";
   var mode="vcard";
   var MODE_KEY = "qr-studio:mode:v1";
   var URL_KEY = "qr-studio:url:v1";
+  var LOGO_KEY = "qr-studio:logo:v1";
+
+  // Preset icons rendered inline as SVG using currentColor so they pick up the QR's
+  // foreground color automatically. Lucide-style outline geometry — license-clean and
+  // stylistically consistent with the page's other icons.
+  var LOGO_PRESETS = {
+    instagram: { label: "Instagram", svg: '<rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 11.4A4 4 0 1 1 12.6 8 4 4 0 0 1 16 11.4z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>' },
+    facebook:  { label: "Facebook",  svg: '<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>' },
+    x:         { label: "X",         svg: '<path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>' },
+    linkedin:  { label: "LinkedIn",  svg: '<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V8h4v1.5A6 6 0 0 1 16 8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><rect x="2" y="9" width="4" height="12" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="4" cy="4" r="2" fill="none" stroke="currentColor" stroke-width="2"/>' },
+    youtube:   { label: "YouTube",   svg: '<rect x="2" y="5" width="20" height="14" rx="3.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 9l5 3-5 3z" fill="currentColor"/>' },
+    mail:      { label: "Email",     svg: '<rect x="2" y="4" width="20" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2 7l10 6 10-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' },
+    phone:     { label: "Phone",     svg: '<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7 12.8 12.8 0 0 0 .7 2.8 2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4 12.8 12.8 0 0 0 2.8.7A2 2 0 0 1 22 16.9z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>' },
+    globe:     { label: "Website",   svg: '<circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2 12h20M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z" fill="none" stroke="currentColor" stroke-width="2"/>' },
+    mappin:    { label: "Location",  svg: '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="10" r="3" fill="none" stroke="currentColor" stroke-width="2"/>' }
+  };
+  var LOGO_ORDER = ["instagram","facebook","x","linkedin","youtube","mail","phone","globe","mappin"];
+  var UPLOAD_ICON_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  var logo = { kind: "none", preset: null, customDataUrl: null, sizePct: 18, shape: "square" };
+
+  // ===== module shape registry =====
+  // Each connected shape uses a 4-corner classifier. For module at (c, r):
+  //   N=(c, r-1), S=(c, r+1), E=(c+1, r), W=(c-1, r)
+  // Each corner is one of:
+  //   "outside"  → no neighbor on either adjacent side → apply the feature
+  //   "edge"     → one adjacent side has a neighbor → sharp
+  //   "interior" → both adjacent sides have neighbors → sharp
+  // Each shape provides a `corner(kind, c, r)` helper returning the path commands
+  // to draw that corner of the module's outline. The renderer traces the module
+  // outline clockwise from TL → TR → BR → BL → TL.
+  // Finder pattern modules (the three locator squares) always render as solid
+  // squares regardless of the shape selection, so scanners can still find the code.
+  function isFinderPattern(c, r, size){
+    return (c < 7 && r < 7) ||
+           (c >= size - 7 && r < 7) ||
+           (c < 7 && r >= size - 7);
+  }
+
+  var SHAPES = {
+    square: {
+      label: "Square",
+      independent: true,
+      renderModule: function(c, r){ return "M" + c + " " + r + "h1v1h-1z"; }
+    },
+    dots: {
+      label: "Dots",
+      independent: true,
+      risky: true,
+      renderModule: function(c, r){
+        // Filled circle of radius 0.45 (small gap between dots)
+        return "M" + (c+0.5) + " " + r + "a0.45 0.45 0 1 1 -0.001 0z"
+             // Actually use a more reliable circle path
+      }
+    },
+    rounded: {
+      label: "Rounded",
+      independent: false,
+      radius: 0.5
+    },
+    hrounded: {
+      label: "H-pill",
+      independent: false,
+      horizontalOnly: true,
+      radius: 0.5
+    },
+    pointed: {
+      label: "Pointed",
+      independent: false,
+      cornerKind: "diag",
+      depth: 0.5
+    },
+    pointedInv: {
+      label: "Notched",
+      independent: false,
+      risky: true,
+      cornerKind: "notch",
+      depth: 0.35
+    },
+    hooks: {
+      label: "Hooks",
+      independent: false,
+      risky: true,
+      cornerKind: "hook",
+      depth: 0.5
+    },
+    triangles: {
+      label: "Triangle",
+      independent: false,
+      risky: true,
+      cornerKind: "diag",
+      depth: 0.75   // deeper cut than pointed
+    }
+  };
+  // Replace dots renderer with a clean circle path generator (avoid the syntax mess above)
+  SHAPES.dots.renderModule = function(c, r){
+    var cx = c + 0.5, cy = r + 0.5, r2 = 0.42;
+    return "M" + (cx - r2) + " " + cy +
+           "a" + r2 + " " + r2 + " 0 1 0 " + (2*r2) + " 0" +
+           "a" + r2 + " " + r2 + " 0 1 0 " + (-2*r2) + " 0z";
+  };
+  var SHAPE_ORDER = ["square","dots","rounded","hrounded","pointed","pointedInv","hooks","triangles"];
+
+  // ===== frame registry =====
+  var FRAMES = {
+    none:    { label: "None" },
+    square:  { label: "Square" },
+    rounded: { label: "Rounded" },
+    circle:  { label: "Circle" }
+  };
+  var FRAME_ORDER = ["none","square","rounded","circle"];
+
+  // ===== new state =====
+  var shape = "square";
+  var frameOpts = { kind: "none", color: "#000000", padding: 0, thickness: 1, text: "", textFont: "sans", textPosition: "bottom", textSize: 3.5, textPlacement: "outside" };
+  var designTab = "logo";
+  var SHAPE_KEY = "qr-studio:shape:v1";
+  var FRAME_KEY = "qr-studio:frame:v1";
+  var DESIGN_TAB_KEY = "qr-studio:design-tab:v1";
 
   $("#ecc").addEventListener("click", function(e){
     var b=e.target.closest("[data-ecc]"); if(!b) return;
@@ -645,19 +913,19 @@
     this.querySelectorAll("button").forEach(function(x){ x.setAttribute("aria-pressed", x===b?"true":"false"); });
     update();
   });
-  $("#scale").addEventListener("input", function(){ scale=+this.value; $("#scaleval").textContent=scale+" px"; update(); });
-  $("#fg").addEventListener("input", function(){ fg=this.value; update(); });
-  document.querySelectorAll(".swatch").forEach(function(sw){ sw.addEventListener("click", function(){ fg=sw.getAttribute("data-color"); $("#fg").value=fg; update(); }); });
   $("#transparent").addEventListener("change", function(){ transparent=this.checked; update(); });
 
   var frame=$("#qrframe"), tmr=null;
   function update(){ clearTimeout(tmr); tmr=setTimeout(run, 80); }
   function run(){
     var payloadText, payloadIsEmpty;
+    // Render options (ECC, scale, fg, transparent) are shared between vCard and URL
+    // modes, so persist them regardless of which mode is active. Mode-specific data
+    // (the vCard form or the URL value) is then saved by the branch below.
+    saveState();
     if(mode === "vcard"){
       var c=gather();
       lastVcard=buildVCard(c);
-      saveState();
       payloadText = lastVcard;
       // vCard is never "empty" — even a blank form produces a valid skeleton — so always render
       payloadIsEmpty = false;
@@ -696,7 +964,8 @@
       $("#dlSvg").disabled=true; return;
     }
     var svg = svgFromMatrix(qr.modules, {
-      margin: 4, scale: scale, dark: fg, light: "#ffffff", transparent: transparent
+      margin: 4, dark: fg, light: "#ffffff",
+      transparent: transparent, logo: logo, shape: shape, frame: frameOpts
     });
     lastSvg=svg; frame.innerHTML=svg; $("#dlSvg").disabled=false;
   }
@@ -704,27 +973,324 @@
   function svgFromMatrix(modules, opts){
     var size = modules.size;
     var data = modules.data;
-    var margin = (opts.margin != null) ? opts.margin : 4;
-    var modulePx = opts.scale || 14;
     var dark = opts.dark || "#000";
     var light = opts.light || "#fff";
     var transparent = !!opts.transparent;
-    var vb = size + 2 * margin;
-    var px = vb * modulePx;
-    var d = "";
+    var shapeKey = opts.shape || "square";
+    var shapeObj = SHAPES[shapeKey] || SHAPES.square;
+    var frameOpts = opts.frame || { kind: "none" };
+    var hasFrame = frameOpts.kind && frameOpts.kind !== "none";
+    var margin = (opts.margin != null) ? opts.margin : 4;
+    if (hasFrame){
+      margin = Math.max(0, frameOpts.padding != null ? frameOpts.padding : 0);
+    }
+    var qrSize = size + 2 * margin; // QR's own viewBox size
+
+    var clear = computeClearZone(opts.logo, qrSize);
+
+    // Build modules path in local QR coords (0..qrSize)
+    var darkPath = "";
     for (var r = 0; r < size; r++){
       var rowOff = r * size;
       for (var c = 0; c < size; c++){
-        if (data[rowOff + c]){
-          d += "M" + (c + margin) + " " + (r + margin) + "h1v1h-1z";
+        if (!data[rowOff + c]) continue;
+        var mx = c + margin, my = r + margin;
+        if (clear && moduleInClearZone(mx, my, clear)) continue;
+        var finder = isFinderPattern(c, r, size);
+        if (finder || shapeObj.independent){
+          if (finder){
+            darkPath += "M" + mx + " " + my + "h1v1h-1z";
+          } else {
+            darkPath += shapeObj.renderModule(mx, my);
+          }
+        } else {
+          darkPath += renderConnectedModule(mx, my, c, r, shapeObj, modules, size);
         }
       }
     }
-    var bg = transparent ? "" :
-      '<rect width="' + vb + '" height="' + vb + '" fill="' + light + '"/>';
-    return '<svg xmlns="http://www.w3.org/2000/svg" width="' + px +
-      '" height="' + px + '" viewBox="0 0 ' + vb + ' ' + vb + '">' +
-      bg + '<path fill="' + dark + '" d="' + d + '"/></svg>';
+
+    // Text metrics
+    var textStr = (frameOpts.text || "").trim();
+    var hasText = hasFrame && textStr.length > 0;
+    // Inside placement is only supported by square/rounded frames; circle falls back
+    // to outside (geometry of text inside a circle is awkward and the QR shrinks).
+    var insideText = hasText && frameOpts.textPlacement === "inside" && frameOpts.kind !== "circle";
+
+    var fontSize = 0, textBoxH = 0, targetTextWidth = 0, fontFamily = "", fontWeight = "";
+    if (hasText){
+      fontSize = Math.max(1.5, Math.min(8, frameOpts.textSize != null ? frameOpts.textSize : 3.5));
+      textBoxH = fontSize * 1.9;
+      fontFamily = (frameOpts.textFont === "serif") ? "Georgia, 'Times New Roman', serif"
+                 : (frameOpts.textFont === "mono") ? "'JetBrains Mono', 'Courier New', monospace"
+                 : "system-ui, 'Helvetica Neue', sans-serif";
+      fontWeight = (frameOpts.textFont === "serif") ? "600" : "700";
+      var charFactor = (frameOpts.textFont === "mono") ? 0.65
+                     : (frameOpts.textFont === "serif") ? 0.58 : 0.60;
+      targetTextWidth = textStr.length * fontSize * charFactor;
+    }
+
+    // Content area = the area enclosed by the frame stroke.
+    //   Outside text or no text: contentW = contentH = qrSize
+    //   Inside text: content includes QR + a text strip stacked vertically
+    var contentW = qrSize, contentH = qrSize;
+    if (insideText){
+      contentH += textBoxH;
+      var textPad = fontSize * 0.5;
+      if (targetTextWidth + 2 * textPad > contentW){
+        contentW = targetTextWidth + 2 * textPad;
+      }
+    }
+
+    // Frame metrics
+    var thick = hasFrame ? Math.max(0, frameOpts.thickness != null ? frameOpts.thickness : 1) : 0;
+    var frameOuterW, frameOuterH;
+    var framePath = "";
+    var frameInsetX = 0, frameInsetY = 0; // where content starts within the frame outer box
+    if (frameOpts.kind === "circle"){
+      // Circle inscribes the content rect (which is just the QR here, since we forced outside)
+      var ringR = Math.sqrt((contentW/2)*(contentW/2) + (contentH/2)*(contentH/2)) + thick/2;
+      var fullR = ringR + thick / 2;
+      frameOuterW = frameOuterH = 2 * fullR;
+      frameInsetX = fullR - contentW/2;
+      frameInsetY = fullR - contentH/2;
+      if (thick > 0){
+        framePath = '<circle cx="' + fullR + '" cy="' + fullR + '" r="' + ringR + '" fill="none" stroke="' + frameOpts.color + '" stroke-width="' + thick + '"/>';
+      }
+    } else if (hasFrame){
+      frameOuterW = contentW + 2*thick;
+      frameOuterH = contentH + 2*thick;
+      frameInsetX = thick;
+      frameInsetY = thick;
+      var rx = (frameOpts.kind === "rounded") ? Math.min(frameOuterW * 0.08, thick + 2) : 0;
+      if (thick > 0){
+        framePath = '<rect x="' + (thick/2) + '" y="' + (thick/2) + '" width="' + (frameOuterW - thick) + '" height="' + (frameOuterH - thick) + '" rx="' + rx + '" fill="none" stroke="' + frameOpts.color + '" stroke-width="' + thick + '"/>';
+      }
+    } else {
+      frameOuterW = contentW;
+      frameOuterH = contentH;
+    }
+
+    // Position of QR within the content area
+    var qrInContentX = (contentW - qrSize) / 2;
+    var qrInContentY = 0;
+    if (insideText && frameOpts.textPosition === "top"){
+      qrInContentY = textBoxH; // QR below text
+    }
+
+    // Canvas dimensions (frame outer + outside-text extension)
+    var canvasW = frameOuterW, canvasH = frameOuterH;
+    var frameInCanvasX = 0, frameInCanvasY = 0;
+    if (hasText && !insideText){
+      canvasH += textBoxH;
+      var outPad = fontSize * 0.5;
+      var needWidth = targetTextWidth + 2 * outPad;
+      if (needWidth > canvasW){
+        frameInCanvasX = (needWidth - canvasW) / 2;
+        canvasW = needWidth;
+      }
+      if (frameOpts.textPosition === "top"){
+        frameInCanvasY = textBoxH;
+      }
+    }
+
+    // QR absolute position in canvas
+    var qrInCanvasX = frameInCanvasX + frameInsetX + qrInContentX;
+    var qrInCanvasY = frameInCanvasY + frameInsetY + qrInContentY;
+
+    // Text absolute position in canvas
+    var textX = 0, textY = 0;
+    if (hasText){
+      if (insideText){
+        textX = frameInCanvasX + frameInsetX + contentW / 2;
+        if (frameOpts.textPosition === "top"){
+          textY = frameInCanvasY + frameInsetY + textBoxH / 2;
+        } else {
+          textY = frameInCanvasY + frameInsetY + qrSize + textBoxH / 2;
+        }
+      } else {
+        textX = canvasW / 2;
+        if (frameOpts.textPosition === "top"){
+          textY = textBoxH / 2;
+        } else {
+          textY = canvasH - textBoxH / 2;
+        }
+      }
+    }
+
+    var safeText = hasText ? String(textStr).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;") : "";
+    var textBlock = hasText ? ('<text x="' + textX + '" y="' + textY +
+      '" font-family="' + fontFamily + '" font-size="' + fontSize +
+      '" font-weight="' + fontWeight + '" fill="' + frameOpts.color +
+      '" text-anchor="middle" dominant-baseline="central"' +
+      ' textLength="' + targetTextWidth + '" lengthAdjust="spacingAndGlyphs">' +
+      safeText + '</text>') : "";
+
+    var logoOverlay = renderLogoOverlay(opts.logo, qrSize, dark, clear);
+
+    var qrContent = '<g transform="translate(' + qrInCanvasX + ' ' + qrInCanvasY + ')">' +
+      '<path fill="' + dark + '" d="' + darkPath + '"/>' + logoOverlay + '</g>';
+
+    var framePathPositioned = framePath
+      ? '<g transform="translate(' + frameInCanvasX + ' ' + frameInCanvasY + ')">' + framePath + '</g>'
+      : "";
+
+    var canvasBg = transparent ? "" :
+      '<rect width="' + canvasW + '" height="' + canvasH + '" fill="' + light + '"/>';
+
+    var pxW = canvasW, pxH = canvasH;
+    // SVG is fully vector and infinitely scalable. We omit explicit pixel dimensions
+    // and use the viewBox + preserveAspectRatio so the SVG fills whatever container it
+    // lands in (HTML element, vector-editor artboard, print canvas, browser tab) while
+    // keeping its aspect ratio. The width/height="100%" hints make standalone opens in
+    // browsers fill the viewport rather than rendering at the tiny viewBox unit size.
+    return '<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"' +
+      ' viewBox="0 0 ' + canvasW + ' ' + canvasH + '"' +
+      ' preserveAspectRatio="xMidYMid meet">' +
+      canvasBg + qrContent + framePathPositioned + textBlock + '</svg>';
+  }
+
+  // Compute the path segment for one corner of a connected-shape module.
+  // Returns { start: [x,y], end: [x,y], d: string }. For sharp corners, start = end
+  // and d is empty. The renderer traces the module outline TL→TR→BR→BL→TL clockwise.
+  function cornerData(shape, cornerName, mx, my, exterior){
+    var depth = shape.radius != null ? shape.radius : (shape.depth != null ? shape.depth : 0.5);
+    var p;
+    if (cornerName === "TL") p = { c:[mx, my],       pre:[mx, my+depth],       post:[mx+depth, my] };
+    else if (cornerName === "TR") p = { c:[mx+1, my],     pre:[mx+1-depth, my],     post:[mx+1, my+depth] };
+    else if (cornerName === "BR") p = { c:[mx+1, my+1],   pre:[mx+1, my+1-depth],   post:[mx+1-depth, my+1] };
+    else                          p = { c:[mx, my+1],     pre:[mx+depth, my+1],     post:[mx, my+1-depth] };
+    if (!exterior){
+      return { start: p.c, end: p.c, d: "" };
+    }
+    var s = p.pre, e = p.post;
+    var kind = shape.cornerKind;
+    if (kind === "diag"){
+      return { start: s, end: e, d: "L" + e[0] + " " + e[1] };
+    } else if (kind === "notch"){
+      // V apex moves INTO the module along the corner-interior diagonal
+      var apex;
+      if (cornerName === "TL") apex = [mx + depth, my + depth];
+      else if (cornerName === "TR") apex = [mx + 1 - depth, my + depth];
+      else if (cornerName === "BR") apex = [mx + 1 - depth, my + 1 - depth];
+      else apex = [mx + depth, my + 1 - depth];
+      return { start: s, end: e, d: "L" + apex[0] + " " + apex[1] + "L" + e[0] + " " + e[1] };
+    } else if (kind === "hook"){
+      // Concave arc (sweep flag flipped from rounded)
+      return { start: s, end: e, d: "A" + depth + " " + depth + " 0 0 0 " + e[0] + " " + e[1] };
+    }
+    // Default: rounded (convex arc, sweep=1)
+    return { start: s, end: e, d: "A" + depth + " " + depth + " 0 0 1 " + e[0] + " " + e[1] };
+  }
+
+  function renderConnectedModule(mx, my, c, r, shape, mat, size){
+    function dark(cc, rr){
+      if (cc < 0 || cc >= size || rr < 0 || rr >= size) return false;
+      return !!mat.data[rr * size + cc];
+    }
+    var N = shape.horizontalOnly ? false : dark(c, r-1);
+    var S = shape.horizontalOnly ? false : dark(c, r+1);
+    var E = dark(c+1, r);
+    var W = dark(c-1, r);
+    // Exterior tests: a corner is exterior iff neither adjacent edge has a neighbor
+    var tlExt = !N && !W;
+    var trExt = !N && !E;
+    var brExt = !S && !E;
+    var blExt = !S && !W;
+    var tl = cornerData(shape, "TL", mx, my, tlExt);
+    var tr = cornerData(shape, "TR", mx, my, trExt);
+    var br = cornerData(shape, "BR", mx, my, brExt);
+    var bl = cornerData(shape, "BL", mx, my, blExt);
+    var d = "M" + tl.end[0] + " " + tl.end[1];
+    d += "L" + tr.start[0] + " " + tr.start[1] + tr.d;
+    d += "L" + br.start[0] + " " + br.start[1] + br.d;
+    d += "L" + bl.start[0] + " " + bl.start[1] + bl.d;
+    d += "L" + tl.start[0] + " " + tl.start[1] + tl.d;
+    d += "z";
+    return d;
+  }
+
+  // (computeClearZone defined below — supports both rect and circle shapes)
+
+  // Build the center-logo overlay in the same viewBox coordinate space as the modules.
+  // The plate exactly fills the cleared zone (when one exists) so its edges align to
+  // module boundaries — no partial-module artifacts. The icon sits centered inside
+  // the plate with padding.
+  function renderLogoOverlay(logo, vb, fg, clear){
+    if(!logo || logo.kind === "none") return "";
+    if(logo.kind === "preset" && !LOGO_PRESETS[logo.preset]) return "";
+    if(logo.kind === "custom" && !logo.customDataUrl) return "";
+
+    var plateSize, plate;
+    var center = vb / 2;
+    if (clear && clear.kind === "circle"){
+      // Circle plate sized to match the cleared circle
+      plateSize = clear.r * 2;
+      plate = '<circle cx="' + center + '" cy="' + center + '" r="' + clear.r + '" fill="#ffffff"/>';
+    } else if (clear && clear.kind === "rect"){
+      // Square (rounded) plate sized to match the cleared rectangle
+      plateSize = clear.right - clear.left;
+      plate = '<rect x="' + clear.left + '" y="' + clear.top + '" width="' + plateSize + '" height="' + plateSize + '" rx="' + (plateSize * 0.14) + '" fill="#ffffff"/>';
+    } else {
+      // No plate; use raw user size for icon positioning
+      var sizePct = Math.max(8, Math.min(40, logo.sizePct || 18));
+      plateSize = vb * sizePct / 100;
+      plate = "";
+    }
+    var iconUnits = plateSize * 0.72;
+    var iconLeft = center - iconUnits / 2;
+
+    var inner;
+    if(logo.kind === "preset"){
+      var s = iconUnits / 24;
+      inner = '<g transform="translate(' + iconLeft + ' ' + iconLeft + ') scale(' + s + ')" color="' + fg + '">' + LOGO_PRESETS[logo.preset].svg + '</g>';
+    } else {
+      inner = '<image href="' + logo.customDataUrl + '" x="' + iconLeft + '" y="' + iconLeft +
+        '" width="' + iconUnits + '" height="' + iconUnits + '" preserveAspectRatio="xMidYMid meet"/>';
+    }
+    return plate + inner;
+  }
+
+  // Returns the cleared-modules zone behind the logo. For square plates we clear an
+  // integer-aligned square; for circle plates we clear modules whose centers fall
+  // inside a circle of the requested radius (also snapped to whole module units to
+  // keep the cleared edge tidy). Returns null when no logo or no plate is shown.
+  function computeClearZone(logo, vb){
+    if (!logo || logo.kind === "none") return null;
+    var hasContent = (logo.kind === "preset" && LOGO_PRESETS[logo.preset]) ||
+                     (logo.kind === "custom" && logo.customDataUrl);
+    if (!hasContent) return null;
+    var sizePct = Math.max(8, Math.min(40, logo.sizePct || 18));
+    var cx = vb / 2;
+    var rawHalf = (vb * sizePct / 100) / 2;
+    if (logo.shape === "circle"){
+      // Round the radius outward so it covers whole modules cleanly along axes
+      var rSnapped = Math.ceil(rawHalf);
+      return { kind: "circle", cx: cx, cy: cx, r: rSnapped };
+    }
+    if (logo.shape === "square"){
+      var left = Math.floor(cx - rawHalf);
+      var right = Math.ceil(cx + rawHalf);
+      var half = Math.max(cx - left, right - cx);
+      left = cx - half; right = cx + half;
+      return { kind: "rect", left: left, top: left, right: right, bottom: right };
+    }
+    return null;
+  }
+
+  // Whether a module at integer top-left (mx, my) should be skipped because the
+  // logo clear zone covers it. For circle zones, "covered" means the module's
+  // CENTER falls inside the circle — gives a clean stepped circular cutout.
+  function moduleInClearZone(mx, my, clear){
+    if (!clear) return false;
+    if (clear.kind === "rect"){
+      return mx >= clear.left && mx < clear.right && my >= clear.top && my < clear.bottom;
+    }
+    if (clear.kind === "circle"){
+      var dx = (mx + 0.5) - clear.cx;
+      var dy = (my + 0.5) - clear.cy;
+      return (dx*dx + dy*dy) <= (clear.r * clear.r);
+    }
+    return false;
   }
 
   function download(text, filename, mime){
@@ -785,19 +1351,18 @@
       adrType:$("#adrType").value, street:$("#street").value, city:$("#city").value,
       region:$("#region").value, zip:$("#zip").value, country:$("#country").value,
       url:$("#url").value, note:$("#note").value,
-      phones:ph, emails:em, ecc:ecc, scale:scale, fg:fg, transparent:transparent };
+      phones:ph, emails:em, ecc:ecc, fg:fg, transparent:transparent };
   }
   function saveState(){ try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(serializeState())); }catch(e){} }
   function loadState(){ try{ var s=localStorage.getItem(STORAGE_KEY); return s?JSON.parse(s):null; }catch(e){ return null; } }
   function setVal(id, v){ var el=$("#"+id); if(el) el.value = (v==null?"":v); }
   function applyRender(s){
     ecc = s.ecc || "M";
-    scale = (typeof s.scale==="number") ? s.scale : 14;
     fg = s.fg || "#16180f";
     transparent = !!s.transparent;
     $("#ecc").querySelectorAll("button").forEach(function(x){ x.setAttribute("aria-pressed", x.getAttribute("data-ecc")===ecc?"true":"false"); });
-    $("#scale").value = scale; $("#scaleval").textContent = scale+" px";
-    $("#fg").value = fg; $("#transparent").checked = transparent;
+    syncFgUI();
+    $("#transparent").checked = transparent;
   }
   function applyState(s){
     ["firstName","lastName","org","title","adrType","street","city","region","zip","country","url","note"].forEach(function(k){ setVal(k, s[k]); });
@@ -852,6 +1417,662 @@
     }
   });
 
+  // ===== logo picker =====
+  var iconPicker = $("#iconPicker");
+  var iconFile = $("#iconFile");
+
+  function buildPicker(){
+    var html = '';
+    // None
+    html += '<button type="button" role="radio" data-logo="none" aria-checked="true" aria-label="No logo">' +
+            '<span class="none-dash" aria-hidden="true"></span><span class="lbl">None</span></button>';
+    // Custom (only when a custom image is loaded — shown as its own tile)
+    if (logo.customDataUrl){
+      html += '<button type="button" role="radio" data-logo="custom" aria-checked="false" aria-label="Custom image">' +
+              '<span class="thumb" style="background-image:url(\'' + logo.customDataUrl.replace(/'/g, "%27") + '\')" aria-hidden="true"></span>' +
+              '<span class="lbl">Custom</span></button>';
+    }
+    // Presets
+    LOGO_ORDER.forEach(function(key){
+      var p = LOGO_PRESETS[key];
+      html += '<button type="button" role="radio" data-logo="preset" data-preset="' + key + '" aria-checked="false" aria-label="' + p.label + '">' +
+              '<svg viewBox="0 0 24 24" aria-hidden="true">' + p.svg + '</svg>' +
+              '<span class="lbl">' + p.label + '</span></button>';
+    });
+    iconPicker.innerHTML = html;
+  }
+
+  function refreshPickerSelection(){
+    var btns = iconPicker.querySelectorAll("button");
+    btns.forEach(function(b){
+      var sel = false;
+      if(logo.kind === "none" && b.dataset.logo === "none") sel = true;
+      else if(logo.kind === "preset" && b.dataset.logo === "preset" && b.dataset.preset === logo.preset) sel = true;
+      else if(logo.kind === "custom" && b.dataset.logo === "custom") sel = true;
+      b.setAttribute("aria-checked", sel ? "true" : "false");
+    });
+    // Sync upload button label
+    var uploadLbl = $("#uploadBtnLabel");
+    if (uploadLbl) uploadLbl.textContent = logo.customDataUrl ? "Replace custom image" : "Upload custom image";
+  }
+
+  iconPicker.addEventListener("click", function(e){
+    var b = e.target.closest("button[data-logo]");
+    if(!b) return;
+    var kind = b.dataset.logo;
+    if(kind === "custom"){
+      logo.kind = "custom"; logo.preset = null;
+    } else if(kind === "preset"){
+      logo.kind = "preset"; logo.preset = b.dataset.preset;
+    } else {
+      logo.kind = "none"; logo.preset = null;
+    }
+    saveLogoState(); refreshPickerSelection(); run();
+  });
+
+  // Dedicated Upload button — opens file picker, replaces any existing custom image
+  $("#uploadBtn").addEventListener("click", function(){
+    iconFile.click();
+  });
+
+  iconFile.addEventListener("change", function(){
+    var f = iconFile.files && iconFile.files[0];
+    if(!f) return;
+    if(f.size > 2 * 1024 * 1024){
+      toast("Image too large (2 MB max)");
+      iconFile.value = ""; return;
+    }
+    var reader = new FileReader();
+    reader.onload = function(){
+      logo.customDataUrl = reader.result;
+      logo.kind = "custom"; logo.preset = null;
+      saveLogoState();
+      buildPicker();           // rebuild so the Custom tile appears
+      refreshPickerSelection();
+      run();
+      toast("Logo loaded");
+    };
+    reader.onerror = function(){ toast("Couldn't read image"); };
+    reader.readAsDataURL(f);
+    iconFile.value = "";
+  });
+
+  // Logo size — slider + paired number input
+  function setLogoSize(v){
+    v = Math.max(10, Math.min(32, Math.round(+v || 18)));
+    logo.sizePct = v;
+    $("#logoSize").value = v;
+    $("#logoSizeVal").value = v;
+    saveLogoState(); run();
+  }
+  $("#logoSize").addEventListener("input", function(){ setLogoSize(this.value); });
+  $("#logoSizeVal").addEventListener("input", function(){
+    var v = +this.value;
+    if (!isNaN(v) && v >= 10 && v <= 32) setLogoSize(v);
+  });
+  $("#logoSizeVal").addEventListener("blur", function(){
+    setLogoSize(this.value); // clamp on blur
+  });
+
+  $("#logoShape").addEventListener("click", function(e){
+    var b = e.target.closest("button[data-shape]");
+    if(!b) return;
+    logo.shape = b.dataset.shape;
+    $("#logoShape").querySelectorAll("button").forEach(function(x){
+      x.setAttribute("aria-pressed", x.dataset.shape === logo.shape ? "true" : "false");
+    });
+    saveLogoState(); run();
+  });
+
+  function saveLogoState(){
+    try { localStorage.setItem(LOGO_KEY, JSON.stringify(logo)); } catch(e){}
+  }
+  function loadLogoState(){
+    try {
+      var s = localStorage.getItem(LOGO_KEY);
+      if(!s) return;
+      var parsed = JSON.parse(s);
+      if(parsed && typeof parsed === "object"){
+        if(["none","preset","custom"].indexOf(parsed.kind) !== -1) logo.kind = parsed.kind;
+        if(parsed.preset && LOGO_PRESETS[parsed.preset]) logo.preset = parsed.preset;
+        if(typeof parsed.customDataUrl === "string" && parsed.customDataUrl.indexOf("data:image/") === 0) logo.customDataUrl = parsed.customDataUrl;
+        if(typeof parsed.sizePct === "number" && parsed.sizePct >= 10 && parsed.sizePct <= 32) logo.sizePct = parsed.sizePct;
+        if(["square","circle"].indexOf(parsed.shape) !== -1) logo.shape = parsed.shape;
+        // Legacy "none" plate is no longer offered — migrate silently to square so
+        // the rendering stays consistent with what the UI now shows.
+        else if (parsed.shape === "none") logo.shape = "square";
+      }
+    } catch(e){}
+  }
+
+  // ===== design panel sub-tabs (LOGO / SHAPE / FRAME) =====
+  var designTabsEl = $("#designTabs");
+  function setDesignTab(t){
+    if (t !== "logo" && t !== "shape" && t !== "frame") t = "logo";
+    designTab = t;
+    designTabsEl.querySelectorAll("[data-design]").forEach(function(b){
+      b.setAttribute("aria-selected", b.dataset.design === t ? "true" : "false");
+    });
+    $("#panel-logo").hidden = (t !== "logo");
+    $("#panel-shape").hidden = (t !== "shape");
+    $("#panel-frame").hidden = (t !== "frame");
+    try { localStorage.setItem(DESIGN_TAB_KEY, t); } catch(e){}
+  }
+  designTabsEl.addEventListener("click", function(e){
+    var b = e.target.closest("[data-design]");
+    if (b) setDesignTab(b.dataset.design);
+  });
+
+  // ===== auto-ECC bumping =====
+  // When the user selects a logo or a risky shape, bump ECC to at least H so the scan
+  // budget covers the visual disruption. Only fires when ECC < H, and shows a toast so
+  // the change isn't silent.
+  function ensureEccAtLeast(target, reason){
+    var levels = ["L","M","Q","H"];
+    var current = levels.indexOf(ecc);
+    var needed = levels.indexOf(target);
+    if (current >= needed) return false;
+    ecc = target;
+    $("#ecc").querySelectorAll("button").forEach(function(x){
+      x.setAttribute("aria-pressed", x.getAttribute("data-ecc") === ecc ? "true" : "false");
+    });
+    toast("Bumped Error corr. to " + target + " — " + reason);
+    return true;
+  }
+
+  // ===== shape picker =====
+  var shapePicker = $("#shapePicker");
+
+  // Tiny in-tile preview: render a 3x3-module pattern of the shape itself
+  function shapePreviewSvg(shapeKey){
+    var s = SHAPES[shapeKey];
+    // Pattern (3 cols × 3 rows) demonstrating connections and isolated modules
+    // X X .     each row is a 3-bit
+    // X X .     pattern: showing a 2x2 block plus an isolated dot
+    // . . X
+    var pattern = [
+      [1,1,0],
+      [1,1,0],
+      [0,0,1]
+    ];
+    var ps = 3; // pattern size
+    var darkPath = "";
+    function dark(cc, rr){
+      if (cc<0||cc>=ps||rr<0||rr>=ps) return false;
+      return !!pattern[rr][cc];
+    }
+    for (var r = 0; r < ps; r++){
+      for (var c = 0; c < ps; c++){
+        if (!pattern[r][c]) continue;
+        if (s.independent){
+          darkPath += s.renderModule(c, r);
+        } else {
+          // Inline mini renderer for connected shape
+          var N = s.horizontalOnly ? false : dark(c, r-1);
+          var S = s.horizontalOnly ? false : dark(c, r+1);
+          var E = dark(c+1, r), W = dark(c-1, r);
+          var tlExt=!N&&!W, trExt=!N&&!E, brExt=!S&&!E, blExt=!S&&!W;
+          var tl=cornerData(s,"TL",c,r,tlExt), tr=cornerData(s,"TR",c,r,trExt),
+              br=cornerData(s,"BR",c,r,brExt), bl=cornerData(s,"BL",c,r,blExt);
+          var d2 = "M"+tl.end[0]+" "+tl.end[1];
+          d2 += "L"+tr.start[0]+" "+tr.start[1]+tr.d;
+          d2 += "L"+br.start[0]+" "+br.start[1]+br.d;
+          d2 += "L"+bl.start[0]+" "+bl.start[1]+bl.d;
+          d2 += "L"+tl.start[0]+" "+tl.start[1]+tl.d;
+          d2 += "z";
+          darkPath += d2;
+        }
+      }
+    }
+    return '<svg class="preview" viewBox="-0.2 -0.2 3.4 3.4"><path class="ink" fill="currentColor" d="' + darkPath + '"/></svg>';
+  }
+
+  function buildShapePicker(){
+    var html = "";
+    SHAPE_ORDER.forEach(function(key){
+      var s = SHAPES[key];
+      html += '<button type="button" role="radio" data-shape="' + key + '" aria-checked="' + (key === shape ? "true" : "false") + '" aria-label="' + s.label + '">' +
+              shapePreviewSvg(key) +
+              '<span class="lbl">' + s.label + '</span></button>';
+    });
+    shapePicker.innerHTML = html;
+  }
+  shapePicker.addEventListener("click", function(e){
+    var b = e.target.closest("button[data-shape]");
+    if (!b) return;
+    shape = b.dataset.shape;
+    shapePicker.querySelectorAll("button").forEach(function(x){
+      x.setAttribute("aria-checked", x.dataset.shape === shape ? "true" : "false");
+    });
+    try { localStorage.setItem(SHAPE_KEY, shape); } catch(e){}
+    if (SHAPES[shape] && SHAPES[shape].risky){
+      ensureEccAtLeast("H", "stylized shape");
+    }
+    run();
+  });
+
+  // ===== frame picker =====
+  var framePicker = $("#framePicker");
+
+  function framePreviewSvg(kind){
+    // 32x32 viewBox with a small QR-like grid inside a frame
+    var sw = 2;
+    if (kind === "none"){
+      return '<svg class="preview" viewBox="0 0 32 32">' +
+             '<rect class="ink" x="8" y="8" width="3" height="3" fill="currentColor"/>' +
+             '<rect class="ink" x="13" y="8" width="3" height="3" fill="currentColor"/>' +
+             '<rect class="ink" x="21" y="8" width="3" height="3" fill="currentColor"/>' +
+             '<rect class="ink" x="8" y="13" width="3" height="3" fill="currentColor"/>' +
+             '<rect class="ink" x="18" y="13" width="3" height="3" fill="currentColor"/>' +
+             '<rect class="ink" x="8" y="21" width="3" height="3" fill="currentColor"/>' +
+             '<rect class="ink" x="13" y="21" width="3" height="3" fill="currentColor"/>' +
+             '<rect class="ink" x="21" y="21" width="3" height="3" fill="currentColor"/>' +
+             '</svg>';
+    }
+    var miniQR = '<g><rect class="ink" x="10" y="10" width="2" height="2" fill="currentColor"/><rect class="ink" x="14" y="10" width="2" height="2" fill="currentColor"/><rect class="ink" x="20" y="10" width="2" height="2" fill="currentColor"/><rect class="ink" x="10" y="14" width="2" height="2" fill="currentColor"/><rect class="ink" x="17" y="14" width="2" height="2" fill="currentColor"/><rect class="ink" x="14" y="17" width="2" height="2" fill="currentColor"/><rect class="ink" x="20" y="17" width="2" height="2" fill="currentColor"/><rect class="ink" x="10" y="20" width="2" height="2" fill="currentColor"/><rect class="ink" x="17" y="20" width="2" height="2" fill="currentColor"/></g>';
+    if (kind === "square"){
+      return '<svg class="preview" viewBox="0 0 32 32"><rect class="ink" x="3" y="3" width="26" height="26" rx="0" fill="none" stroke="currentColor" stroke-width="' + sw + '"/>' + miniQR + '</svg>';
+    } else if (kind === "rounded"){
+      return '<svg class="preview" viewBox="0 0 32 32"><rect class="ink" x="3" y="3" width="26" height="26" rx="5" fill="none" stroke="currentColor" stroke-width="' + sw + '"/>' + miniQR + '</svg>';
+    } else if (kind === "circle"){
+      return '<svg class="preview" viewBox="0 0 32 32"><circle class="ink" cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="' + sw + '"/>' + miniQR + '</svg>';
+    }
+    return "";
+  }
+
+  function buildFramePicker(){
+    var html = "";
+    FRAME_ORDER.forEach(function(key){
+      var f = FRAMES[key];
+      html += '<button type="button" role="radio" data-frame="' + key + '" aria-checked="' + (key === frameOpts.kind ? "true" : "false") + '" aria-label="' + f.label + '">' +
+              framePreviewSvg(key) +
+              '<span class="lbl">' + f.label + '</span></button>';
+    });
+    framePicker.innerHTML = html;
+    refreshFrameControls();
+  }
+  framePicker.addEventListener("click", function(e){
+    var b = e.target.closest("button[data-frame]");
+    if (!b) return;
+    frameOpts.kind = b.dataset.frame;
+    framePicker.querySelectorAll("button").forEach(function(x){
+      x.setAttribute("aria-checked", x.dataset.frame === frameOpts.kind ? "true" : "false");
+    });
+    refreshFrameControls();
+    saveFrameState();
+    run();
+  });
+  function refreshFrameControls(){
+    var hasFrame = frameOpts.kind !== "none";
+    ["#frameColorLine","#framePaddingLine","#frameThicknessLine","#frameTextSep","#frameTextLine","#frameTextFontLine","#frameTextPlacementLine","#frameTextPositionLine","#frameTextSizeLine"].forEach(function(sel){
+      var el = $(sel); if (el) el.style.display = hasFrame ? "" : "none";
+    });
+    // Circle frames don't support inside text (geometry is awkward) — force outside
+    if (frameOpts.kind === "circle"){
+      var insideBtn = $("#frameTextPlacement button[data-placement='inside']");
+      if (insideBtn) insideBtn.disabled = true;
+      if (frameOpts.textPlacement === "inside"){
+        frameOpts.textPlacement = "outside";
+        $("#frameTextPlacement").querySelectorAll("button").forEach(function(x){
+          x.setAttribute("aria-pressed", x.dataset.placement === "outside" ? "true" : "false");
+        });
+      }
+    } else {
+      var insideBtn2 = $("#frameTextPlacement button[data-placement='inside']");
+      if (insideBtn2) insideBtn2.disabled = false;
+    }
+  }
+
+  // Paired slider + number input for padding and thickness
+  function pairSliderNumber(sliderId, numberId, lo, hi, onChange){
+    var s = $(sliderId), n = $(numberId);
+    function set(v, fromText){
+      v = Math.max(lo, Math.min(hi, Math.round(+v)));
+      if (isNaN(v)) v = lo;
+      s.value = v;
+      if (!fromText) n.value = v;
+      onChange(v);
+    }
+    s.addEventListener("input", function(){ set(this.value, false); });
+    n.addEventListener("input", function(){
+      var v = +this.value;
+      if (!isNaN(v) && v >= lo && v <= hi) set(v, true);
+    });
+    n.addEventListener("blur", function(){ set(this.value, false); });
+    return set;
+  }
+  pairSliderNumber("#framePadding", "#framePaddingVal", 0, 6, function(v){
+    frameOpts.padding = v; saveFrameState(); run();
+  });
+  pairSliderNumber("#frameThickness", "#frameThicknessVal", 0, 4, function(v){
+    frameOpts.thickness = v; saveFrameState(); run();
+  });
+  // Note: frameTextSize uses a finer step (0.1) so we handle it with a slightly
+  // looser wiring that preserves fractional values.
+  (function(){
+    var s = $("#frameTextSize"), n = $("#frameTextSizeVal");
+    function set(v, fromText){
+      v = Math.max(1.5, Math.min(8, Math.round((+v) * 10) / 10));
+      if (isNaN(v)) v = 3.5;
+      s.value = v;
+      if (!fromText) n.value = v;
+      frameOpts.textSize = v;
+      saveFrameState(); run();
+    }
+    s.addEventListener("input", function(){ set(this.value, false); });
+    n.addEventListener("input", function(){
+      var v = +this.value;
+      if (!isNaN(v) && v >= 1.5 && v <= 8) set(v, true);
+    });
+    n.addEventListener("blur", function(){ set(this.value, false); });
+  })();
+
+  // Frame text + font + position
+  $("#frameText").addEventListener("input", function(){
+    frameOpts.text = this.value;
+    saveFrameState(); run();
+  });
+  $("#frameTextFont").addEventListener("click", function(e){
+    var b = e.target.closest("button[data-font]"); if (!b) return;
+    frameOpts.textFont = b.dataset.font;
+    $("#frameTextFont").querySelectorAll("button").forEach(function(x){
+      x.setAttribute("aria-pressed", x.dataset.font === frameOpts.textFont ? "true" : "false");
+    });
+    saveFrameState(); run();
+  });
+  $("#frameTextPosition").addEventListener("click", function(e){
+    var b = e.target.closest("button[data-position]"); if (!b) return;
+    frameOpts.textPosition = b.dataset.position;
+    $("#frameTextPosition").querySelectorAll("button").forEach(function(x){
+      x.setAttribute("aria-pressed", x.dataset.position === frameOpts.textPosition ? "true" : "false");
+    });
+    saveFrameState(); run();
+  });
+  $("#frameTextPlacement").addEventListener("click", function(e){
+    var b = e.target.closest("button[data-placement]"); if (!b || b.disabled) return;
+    frameOpts.textPlacement = b.dataset.placement;
+    $("#frameTextPlacement").querySelectorAll("button").forEach(function(x){
+      x.setAttribute("aria-pressed", x.dataset.placement === frameOpts.textPlacement ? "true" : "false");
+    });
+    saveFrameState(); run();
+  });
+
+  function saveFrameState(){
+    try { localStorage.setItem(FRAME_KEY, JSON.stringify(frameOpts)); } catch(e){}
+  }
+  function loadFrameState(){
+    try {
+      var s = localStorage.getItem(FRAME_KEY);
+      if (!s) return;
+      var p = JSON.parse(s);
+      if (p && typeof p === "object"){
+        if (FRAMES[p.kind]) frameOpts.kind = p.kind;
+        if (typeof p.color === "string" && /^#[0-9a-f]{6}$/i.test(p.color)) frameOpts.color = p.color;
+        if (typeof p.padding === "number" && p.padding >= 0 && p.padding <= 6) frameOpts.padding = p.padding;
+        if (typeof p.thickness === "number" && p.thickness >= 0 && p.thickness <= 4) frameOpts.thickness = p.thickness;
+        if (typeof p.text === "string") frameOpts.text = p.text.slice(0, 40);
+        if (p.textFont === "sans" || p.textFont === "serif" || p.textFont === "mono") frameOpts.textFont = p.textFont;
+        if (p.textPosition === "top" || p.textPosition === "bottom") frameOpts.textPosition = p.textPosition;
+        if (p.textPlacement === "outside" || p.textPlacement === "inside") frameOpts.textPlacement = p.textPlacement;
+        if (typeof p.textSize === "number" && p.textSize >= 1.5 && p.textSize <= 8) frameOpts.textSize = p.textSize;
+      }
+    } catch(e){}
+  }
+
+  // Reset design — clears every QR-visual setting (render options, logo, shape, frame)
+  // back to defaults. Does NOT touch the payload (URL or vCard fields).
+  $("#resetDesign").addEventListener("click", function(){
+    if (!confirm("Reset all design settings? This clears the logo, shape, frame, and render options. Your URL and vCard data are kept.")) return;
+    // Render options
+    ecc = "M"; fg = "#16180f"; transparent = false;
+    $("#ecc").querySelectorAll("button").forEach(function(x){ x.setAttribute("aria-pressed", x.getAttribute("data-ecc") === "M" ? "true" : "false"); });
+    syncFgUI();
+    $("#transparent").checked = false;
+    // Logo
+    logo = { kind: "none", preset: null, customDataUrl: null, sizePct: 18, shape: "square" };
+    saveLogoState();
+    buildPicker();
+    refreshPickerSelection();
+    $("#logoSize").value = 18; $("#logoSizeVal").value = 18;
+    $("#logoShape").querySelectorAll("button").forEach(function(x){
+      x.setAttribute("aria-pressed", x.dataset.shape === "square" ? "true" : "false");
+    });
+    // Shape
+    shape = "square";
+    try { localStorage.setItem(SHAPE_KEY, shape); } catch(e){}
+    $("#shapePicker").querySelectorAll("button").forEach(function(x){
+      x.setAttribute("aria-checked", x.dataset.shape === "square" ? "true" : "false");
+    });
+    // Frame
+    frameOpts = { kind: "none", color: "#000000", padding: 0, thickness: 1, text: "", textFont: "sans", textPosition: "bottom", textSize: 3.5, textPlacement: "outside" };
+    saveFrameState();
+    $("#framePicker").querySelectorAll("button").forEach(function(x){
+      x.setAttribute("aria-checked", x.dataset.frame === "none" ? "true" : "false");
+    });
+    $("#frameColorSwatch").style.background = "#000000";
+    $("#frameColorHexLabel").textContent = "#000000";
+    $("#framePadding").value = 0; $("#framePaddingVal").value = 0;
+    $("#frameThickness").value = 1; $("#frameThicknessVal").value = 1;
+    $("#frameText").value = "";
+    $("#frameTextFont").querySelectorAll("button").forEach(function(x){
+      x.setAttribute("aria-pressed", x.dataset.font === "sans" ? "true" : "false");
+    });
+    $("#frameTextPosition").querySelectorAll("button").forEach(function(x){
+      x.setAttribute("aria-pressed", x.dataset.position === "bottom" ? "true" : "false");
+    });
+    $("#frameTextPlacement").querySelectorAll("button").forEach(function(x){
+      x.setAttribute("aria-pressed", x.dataset.placement === "outside" ? "true" : "false");
+    });
+    $("#frameTextSize").value = 3.5; $("#frameTextSizeVal").value = 3.5;
+    refreshFrameControls();
+    run();
+    toast("Design reset");
+  });
+
+  // ===== color picker (popover) =====
+  // Reusable: createColorPicker(triggerEl, hexLabelEl, swatchEl, initialHex, onChange)
+  // Returns {set(hex), get()} for programmatic control.
+  // The popover is rendered once and re-positioned/re-bound on each open.
+  var activePicker = null;
+  var popEl;
+  function ensurePopover(){
+    if (popEl) return popEl;
+    popEl = document.createElement("div");
+    popEl.className = "colorpop";
+    popEl.hidden = true;
+    popEl.innerHTML =
+      '<div class="sv-area"><div class="sv-white"></div><div class="sv-black"></div><div class="sv-pin"></div></div>' +
+      '<div class="hue-area"><div class="hue-pin"></div></div>' +
+      '<div class="hex-row"><span class="pre">#</span><input type="text" class="hex-input" maxlength="6" spellcheck="false"></div>';
+    document.body.appendChild(popEl);
+    return popEl;
+  }
+  document.addEventListener("mousedown", function(e){
+    if (!activePicker) return;
+    if (popEl && popEl.contains(e.target)) return;
+    if (activePicker.trigger.contains(e.target)) return;
+    closePicker();
+  });
+  document.addEventListener("keydown", function(e){
+    if (e.key === "Escape" && activePicker) closePicker();
+  });
+
+  function closePicker(){
+    if (popEl) popEl.hidden = true;
+    activePicker = null;
+  }
+
+  function hexToRgb(hex){
+    var m = /^#?([0-9a-f]{6})$/i.exec(hex || "");
+    if (!m) return {r:0,g:0,b:0};
+    var n = parseInt(m[1], 16);
+    return { r:(n>>16)&255, g:(n>>8)&255, b:n&255 };
+  }
+  function rgbToHex(r, g, b){
+    function h(n){ var s = Math.max(0, Math.min(255, Math.round(n))).toString(16); return s.length<2 ? "0"+s : s; }
+    return "#" + h(r) + h(g) + h(b);
+  }
+  function rgbToHsv(r, g, b){
+    r/=255; g/=255; b/=255;
+    var max = Math.max(r,g,b), min = Math.min(r,g,b);
+    var v = max, d = max - min;
+    var s = max === 0 ? 0 : d / max;
+    var h = 0;
+    if (d !== 0){
+      if (max === r) h = ((g - b) / d) % 6;
+      else if (max === g) h = (b - r) / d + 2;
+      else h = (r - g) / d + 4;
+      h *= 60; if (h < 0) h += 360;
+    }
+    return { h: h, s: s, v: v };
+  }
+  function hsvToRgb(h, s, v){
+    var c = v * s;
+    var x = c * (1 - Math.abs((h / 60) % 2 - 1));
+    var m = v - c;
+    var rgb;
+    if (h < 60) rgb = [c, x, 0];
+    else if (h < 120) rgb = [x, c, 0];
+    else if (h < 180) rgb = [0, c, x];
+    else if (h < 240) rgb = [0, x, c];
+    else if (h < 300) rgb = [x, 0, c];
+    else rgb = [c, 0, x];
+    return { r: (rgb[0]+m)*255, g: (rgb[1]+m)*255, b: (rgb[2]+m)*255 };
+  }
+  function hueColor(h){
+    var rgb = hsvToRgb(h, 1, 1);
+    return rgbToHex(rgb.r, rgb.g, rgb.b);
+  }
+
+  function openPicker(picker){
+    var pop = ensurePopover();
+    activePicker = picker;
+    // Position below trigger
+    var rect = picker.trigger.getBoundingClientRect();
+    var top = window.scrollY + rect.bottom + 6;
+    var left = window.scrollX + rect.left;
+    pop.style.top = top + "px";
+    pop.style.left = left + "px";
+    pop.hidden = false;
+
+    // Wire up controls
+    var sv = pop.querySelector(".sv-area");
+    var svPin = pop.querySelector(".sv-pin");
+    var hue = pop.querySelector(".hue-area");
+    var huePin = pop.querySelector(".hue-pin");
+    var hex = pop.querySelector(".hex-input");
+
+    var hsv = rgbToHsv(picker.current.r, picker.current.g, picker.current.b);
+    function paint(){
+      sv.style.background = hueColor(hsv.h);
+      svPin.style.left = (hsv.s * 100) + "%";
+      svPin.style.top = ((1 - hsv.v) * 100) + "%";
+      huePin.style.left = (hsv.h / 360 * 100) + "%";
+      var rgb = hsvToRgb(hsv.h, hsv.s, hsv.v);
+      picker.current = rgb;
+      var hx = rgbToHex(rgb.r, rgb.g, rgb.b);
+      hex.value = hx.slice(1).toUpperCase();
+      picker.onChange(hx);
+    }
+    paint();
+
+    function dragSv(e){
+      var b = sv.getBoundingClientRect();
+      var x = (e.clientX - b.left) / b.width;
+      var y = (e.clientY - b.top) / b.height;
+      hsv.s = Math.max(0, Math.min(1, x));
+      hsv.v = Math.max(0, Math.min(1, 1 - y));
+      paint();
+    }
+    function dragHue(e){
+      var b = hue.getBoundingClientRect();
+      var x = (e.clientX - b.left) / b.width;
+      hsv.h = Math.max(0, Math.min(359.99, x * 360));
+      paint();
+    }
+    function bindDrag(el, cb){
+      el.onmousedown = function(e){
+        e.preventDefault(); cb(e);
+        function move(e2){ cb(e2); }
+        function up(){ document.removeEventListener("mousemove", move); document.removeEventListener("mouseup", up); }
+        document.addEventListener("mousemove", move);
+        document.addEventListener("mouseup", up);
+      };
+      el.ontouchstart = function(e){
+        e.preventDefault();
+        var t = e.touches[0]; cb({clientX:t.clientX, clientY:t.clientY});
+        function move(e2){ var t2 = e2.touches[0]; cb({clientX:t2.clientX, clientY:t2.clientY}); }
+        function end(){ document.removeEventListener("touchmove", move); document.removeEventListener("touchend", end); }
+        document.addEventListener("touchmove", move, {passive:false});
+        document.addEventListener("touchend", end);
+      };
+    }
+    bindDrag(sv, dragSv);
+    bindDrag(hue, dragHue);
+
+    hex.oninput = function(){
+      var v = hex.value.replace(/[^0-9a-f]/gi, "").slice(0, 6);
+      hex.value = v.toUpperCase();
+      if (v.length === 6){
+        var rgb = hexToRgb("#" + v);
+        hsv = rgbToHsv(rgb.r, rgb.g, rgb.b);
+        // Don't repaint hex to avoid cursor jumping; just update pins and trigger
+        sv.style.background = hueColor(hsv.h);
+        svPin.style.left = (hsv.s * 100) + "%";
+        svPin.style.top = ((1 - hsv.v) * 100) + "%";
+        huePin.style.left = (hsv.h / 360 * 100) + "%";
+        picker.current = rgb;
+        picker.onChange("#" + v.toLowerCase());
+      }
+    };
+    setTimeout(function(){ hex.focus(); hex.select(); }, 30);
+  }
+
+  function createColorPicker(triggerEl, hexLabelEl, swatchEl, initialHex, onChange){
+    var rgb = hexToRgb(initialHex);
+    var picker = {
+      trigger: triggerEl,
+      current: rgb,
+      onChange: function(hex){
+        swatchEl.style.background = hex;
+        hexLabelEl.textContent = hex.toUpperCase();
+        onChange(hex);
+      }
+    };
+    triggerEl.addEventListener("click", function(e){
+      e.stopPropagation();
+      if (activePicker === picker){ closePicker(); return; }
+      if (activePicker) closePicker();
+      openPicker(picker);
+    });
+    return picker;
+  }
+
+  // Wire foreground + frame color pickers
+  createColorPicker($("#fgTrigger"), $("#fgHexLabel"), $("#fgSwatch"), fg, function(hex){
+    fg = hex; update();
+  });
+  createColorPicker($("#frameColorTrigger"), $("#frameColorHexLabel"), $("#frameColorSwatch"), frameOpts.color, function(hex){
+    frameOpts.color = hex; saveFrameState(); update();
+  });
+
+  function syncFgUI(){
+    $("#fgSwatch").style.background = fg;
+    $("#fgHexLabel").textContent = (fg || "#000000").toUpperCase();
+  }
+
+  // Hook auto-ECC-bump into existing logo-picker selection (preset/custom)
+  // We do this by wrapping the iconPicker click handler logic. Since the handler is
+  // already attached, we add a post-event listener that fires after the original.
+  // Simpler approach: bump on logo state change, detected after logo events.
+  var _origSaveLogoState = saveLogoState;
+  saveLogoState = function(){
+    _origSaveLogoState();
+    if (logo.kind === "preset" || logo.kind === "custom"){
+      ensureEccAtLeast("H", "center logo");
+    }
+  };
+
   // ===== init =====
   var saved = loadState();
   if(saved) applyState(saved); else buildRows(DEFAULT_PHONES, DEFAULT_EMAILS);
@@ -860,7 +2081,46 @@
     if(savedUrl != null) $("#urlValue").value = savedUrl;
     var savedMode = localStorage.getItem(MODE_KEY);
     if(savedMode === "vcard" || savedMode === "url") mode = savedMode;
+    var savedShape = localStorage.getItem(SHAPE_KEY);
+    if(savedShape && SHAPES[savedShape]) shape = savedShape;
+    var savedDesignTab = localStorage.getItem(DESIGN_TAB_KEY);
+    if(savedDesignTab === "logo" || savedDesignTab === "shape" || savedDesignTab === "frame") designTab = savedDesignTab;
   }catch(e){}
+  loadLogoState();
+  loadFrameState();
+  buildPicker();
+  refreshPickerSelection();
+  buildShapePicker();
+  buildFramePicker();
+  // Sync logo UI controls
+  $("#logoSize").value = logo.sizePct;
+  $("#logoSizeVal").value = logo.sizePct;
+  $("#logoShape").querySelectorAll("button").forEach(function(x){
+    x.setAttribute("aria-pressed", x.dataset.shape === logo.shape ? "true" : "false");
+  });
+  // Sync frame UI controls
+  $("#framePadding").value = frameOpts.padding;
+  $("#framePaddingVal").value = frameOpts.padding;
+  $("#frameThickness").value = frameOpts.thickness;
+  $("#frameThicknessVal").value = frameOpts.thickness;
+  $("#frameColorSwatch").style.background = frameOpts.color;
+  $("#frameColorHexLabel").textContent = frameOpts.color.toUpperCase();
+  // Sync frame text controls
+  $("#frameText").value = frameOpts.text || "";
+  $("#frameTextFont").querySelectorAll("button").forEach(function(x){
+    x.setAttribute("aria-pressed", x.dataset.font === frameOpts.textFont ? "true" : "false");
+  });
+  $("#frameTextPosition").querySelectorAll("button").forEach(function(x){
+    x.setAttribute("aria-pressed", x.dataset.position === frameOpts.textPosition ? "true" : "false");
+  });
+  $("#frameTextPlacement").querySelectorAll("button").forEach(function(x){
+    x.setAttribute("aria-pressed", x.dataset.placement === frameOpts.textPlacement ? "true" : "false");
+  });
+  $("#frameTextSize").value = frameOpts.textSize;
+  $("#frameTextSizeVal").value = frameOpts.textSize;
+  // Sync foreground color UI
+  syncFgUI();
+  setDesignTab(designTab);
   $("#leftCol").addEventListener("input", update);
   setMode(mode);
 })();
