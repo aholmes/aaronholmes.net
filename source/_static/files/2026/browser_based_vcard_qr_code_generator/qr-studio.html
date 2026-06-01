@@ -105,12 +105,21 @@
 
   .preview-col{position:sticky;top:24px;display:flex;flex-direction:column;gap:18px}
   @media (max-width:860px){.preview-col{position:static}}
-  .qrcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
-  .qrframe{background:#fff;border:1px solid var(--line-2);border-radius:10px;padding:18px;display:grid;place-items:center;min-height:240px;
+  .qrcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;display:flex;flex-direction:column;gap:14px}
+  .qr-options{margin-top:4px;border-top:1px dashed var(--line);padding-top:14px;display:flex;flex-direction:column;gap:12px}
+  .qr-options .line{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .qr-options .line[hidden]{display:none}
+  .qr-options .line > label:first-child{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700;min-width:88px}
+  .gradient-compass{display:inline-grid;grid-template-columns:repeat(3,30px);grid-template-rows:repeat(3,30px);gap:3px}
+  .gradient-compass button,.gradient-compass .compass-center{appearance:none;font-size:14px;line-height:1;border:1px solid var(--line);background:#fbfaf4;color:var(--ink);border-radius:5px;padding:0;cursor:pointer;display:grid;place-items:center;font-weight:600;transition:all .12s}
+  .gradient-compass .compass-center{border:none;background:transparent;cursor:default}
+  .gradient-compass button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .gradient-compass button:hover:not([aria-pressed="true"]){border-color:#a8a48c;background:#fff}
+  .qrframe{background:#fff;border:1px solid var(--line-2);border-radius:10px;padding:18px;display:grid;place-items:center;min-height:280px;
     background-image:linear-gradient(45deg,#f6f5ef 25%,transparent 25%),linear-gradient(-45deg,#f6f5ef 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#f6f5ef 75%),linear-gradient(-45deg,transparent 75%,#f6f5ef 75%);
     background-size:18px 18px;background-position:0 0,0 9px,9px -9px,-9px 0}
   .qrframe.solid{background-image:none}
-  .qrframe svg{width:100%;height:auto;max-width:300px;display:block}
+  .qrframe svg{width:100%;height:auto;max-width:340px;display:block}
   .qrframe .err{font-size:13px;color:#b34027;text-align:center;font-weight:600;padding:10px}
 
   .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
@@ -124,6 +133,7 @@
   .opts{display:flex;flex-direction:column;gap:14px}
   .opts .line{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
   .opts label{min-width:74px}
+  .opts .line[hidden]{display:none}
   .seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fbfaf4}
   .seg button{appearance:none;border:0;background:transparent;font:inherit;font-size:13px;font-weight:600;color:var(--muted);padding:8px 13px;cursor:pointer;border-right:1px solid var(--line)}
   .seg button:last-child{border-right:0}
@@ -219,7 +229,7 @@
   pre.vcard{margin:0;padding:0 18px 18px;font-family:"JetBrains Mono",monospace;font-size:12px;line-height:1.7;color:var(--ink);white-space:pre-wrap;word-break:break-word}
   .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--paper);font-weight:600;font-size:13px;padding:11px 18px;border-radius:10px;box-shadow:var(--shadow);opacity:0;transition:.25s;z-index:50;pointer-events:none}
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-  footer.fine{margin-top:34px;font-size:11.5px;color:var(--muted);font-family:"JetBrains Mono",monospace;line-height:1.7;border-top:1px solid var(--line);padding-top:14px}
+  footer.fine{margin-top:36px;font-size:11.5px;color:var(--muted);font-family:"JetBrains Mono",monospace;line-height:1.7;border-top:1px solid var(--line);padding-top:14px;text-align:center;letter-spacing:.04em}
   /* overbearing Disqus ads */
   #disqus_recommendations,
   #disqus_thread > iframe[src*="ads-iframe"]:first-child {
@@ -266,10 +276,9 @@
       </span>
       <div>
         <h1>QR <em>Studio</em></h1>
-        <div class="sub">Build scannable QR codes &mdash; vCard or URL &mdash; as SVG.</div>
+        <div class="sub">Scannable QR codes &mdash; vCard or URL &mdash; as SVG.</div>
       </div>
     </div>
-    <span class="tag">offline &middot; svg</span>
   </header>
 
   <div class="grid">
@@ -277,13 +286,13 @@
       <div class="modeswitch">
         <span class="modeswitch-label">Build a QR for &mdash;</span>
         <nav class="tabs" id="modeTabs" role="tablist" aria-label="QR type">
-          <button type="button" role="tab" data-mode="vcard" aria-selected="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M14 9h4M14 13h3M5.5 17c.8-1.6 2.5-2 3.5-2s2.7.4 3.5 2"/></svg>
-            Contact (vCard)
-          </button>
-          <button type="button" role="tab" data-mode="url" aria-selected="false">
+          <button type="button" role="tab" data-mode="url" aria-selected="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.72"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.72"/></svg>
             URL
+          </button>
+          <button type="button" role="tab" data-mode="vcard" aria-selected="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M14 9h4M14 13h3M5.5 17c.8-1.6 2.5-2 3.5-2s2.7.4 3.5 2"/></svg>
+            Contact (vCard)
           </button>
         </nav>
       </div>
@@ -360,7 +369,7 @@
           <div class="body">
             <div class="field">
               <label for="urlValue">URL</label>
-              <input id="urlValue" type="url" inputmode="url" placeholder="https://www.bigfrog.com/westla" autocomplete="off" spellcheck="false">
+              <input id="urlValue" type="url" inputmode="url" placeholder="https://example.com" autocomplete="off" spellcheck="false">
             </div>
             <span class="hint">Supports <b>https://</b>, <b>mailto:</b>, <b>tel:</b>, <b>sms:</b>, <b>geo:</b>, and custom app schemes.</span>
           </div>
@@ -381,19 +390,10 @@
           <button class="act ghost" id="copy" type="button">Copy vCard</button>
           <button type="button" class="addrow danger" id="resetDesign" style="margin-left:auto">Reset design</button>
         </div>
-      </div>
-
-      <section class="panel">
-        <h2>Render options</h2>
-        <div class="body opts">
+        <div class="qr-options">
           <div class="line">
-            <label>Error&nbsp;corr.</label>
-            <span class="seg" id="ecc" role="group" aria-label="Error correction level">
-              <button type="button" data-ecc="L">L</button>
-              <button type="button" data-ecc="M" aria-pressed="true">M</button>
-              <button type="button" data-ecc="Q">Q</button>
-              <button type="button" data-ecc="H">H</button>
-            </span>
+            <label>Background</label>
+            <label class="toggle"><input type="checkbox" id="transparent"> Transparent</label>
           </div>
           <div class="line">
             <label>Color</label>
@@ -401,10 +401,35 @@
               <span class="swatch" id="fgSwatch" style="background:#16180f"></span>
               <span id="fgHexLabel">#16180F</span>
             </button>
-            <label class="toggle"><input type="checkbox" id="transparent"> Transparent bg</label>
+            <label class="toggle"><input type="checkbox" id="useGradient"> Gradient</label>
+          </div>
+          <div class="line" id="gradientLine" hidden>
+            <label>To</label>
+            <button type="button" class="colorpop-trigger" id="gradEndTrigger" aria-label="Gradient end color">
+              <span class="swatch" id="gradEndSwatch" style="background:#2f9e4d"></span>
+              <span id="gradEndHexLabel">#2F9E4D</span>
+            </button>
+            <span class="seg" id="gradType" role="group" aria-label="Gradient type">
+              <button type="button" data-grad="linear" aria-pressed="true">Linear</button>
+              <button type="button" data-grad="radial">Radial</button>
+            </span>
+          </div>
+          <div class="line" id="gradientDirLine" hidden>
+            <label>Direction</label>
+            <div class="gradient-compass" id="gradCompass" role="group" aria-label="Gradient direction">
+              <button type="button" data-angle="315" aria-label="Top-left">&#x2196;</button>
+              <button type="button" data-angle="0" aria-label="Top">&#x2191;</button>
+              <button type="button" data-angle="45" aria-label="Top-right">&#x2197;</button>
+              <button type="button" data-angle="270" aria-label="Left">&#x2190;</button>
+              <span class="compass-center" aria-hidden="true"></span>
+              <button type="button" data-angle="90" aria-label="Right">&#x2192;</button>
+              <button type="button" data-angle="225" aria-label="Bottom-left">&#x2199;</button>
+              <button type="button" data-angle="180" aria-label="Bottom" aria-pressed="true">&#x2193;</button>
+              <button type="button" data-angle="135" aria-label="Bottom-right">&#x2198;</button>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
 
       <section class="panel">
         <div class="body opts">
@@ -416,7 +441,7 @@
 
           <div class="subpanel" id="panel-logo" role="tabpanel" aria-label="Center logo">
             <div class="iconpicker" id="iconPicker" role="radiogroup" aria-label="Center logo"></div>
-            <input type="file" id="iconFile" accept="image/png,image/jpeg,image/gif,image/webp,image/svg+xml" hidden>
+            <input type="file" id="iconFile" accept="image/png,image/jpeg,image/gif,image/webp,image/svg+xml,.svg" hidden>
             <button type="button" class="uploadbtn" id="uploadBtn" aria-label="Upload custom image">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               <span id="uploadBtnLabel">Upload custom image</span>
@@ -433,6 +458,30 @@
                 <button type="button" data-shape="circle">Circle</button>
               </span>
             </div>
+            <div class="line" id="logoColorLine">
+              <label>Color</label>
+              <button type="button" class="colorpop-trigger" id="logoColorTrigger" aria-label="Logo color">
+                <span class="swatch" id="logoColorSwatch" style="background:#16180f"></span>
+                <span id="logoColorHexLabel">#16180F</span>
+              </button>
+              <label class="toggle"><input type="checkbox" id="logoUseGradient"> Gradient</label>
+              <button type="button" class="addrow ghost" id="logoMatchQR" title="Reset logo color to track the QR color">Match QR</button>
+            </div>
+            <div class="line" id="logoGradientLine" hidden>
+              <label>To</label>
+              <button type="button" class="colorpop-trigger" id="logoGradEndTrigger" aria-label="Logo gradient end color">
+                <span class="swatch" id="logoGradEndSwatch" style="background:#2f9e4d"></span>
+                <span id="logoGradEndHexLabel">#2F9E4D</span>
+              </button>
+              <span class="seg" id="logoGradType" role="group" aria-label="Logo gradient type">
+                <button type="button" data-grad="linear" aria-pressed="true">Linear</button>
+                <button type="button" data-grad="radial">Radial</button>
+              </span>
+            </div>
+            <div class="line" id="logoGradientDirLine" hidden>
+              <label>Direction</label>
+              <div class="gradient-compass" id="logoGradCompass" role="group" aria-label="Logo gradient direction"></div>
+            </div>
           </div>
 
           <div class="subpanel" id="panel-shape" role="tabpanel" aria-label="Module shape" hidden>
@@ -447,6 +496,22 @@
                 <span class="swatch" id="frameColorSwatch" style="background:#000000"></span>
                 <span id="frameColorHexLabel">#000000</span>
               </button>
+              <label class="toggle"><input type="checkbox" id="frameUseGradient"> Gradient</label>
+            </div>
+            <div class="line" id="frameGradientLine" hidden>
+              <label>To</label>
+              <button type="button" class="colorpop-trigger" id="frameGradEndTrigger" aria-label="Frame gradient end color">
+                <span class="swatch" id="frameGradEndSwatch" style="background:#2f9e4d"></span>
+                <span id="frameGradEndHexLabel">#2F9E4D</span>
+              </button>
+              <span class="seg" id="frameGradType" role="group" aria-label="Frame gradient type">
+                <button type="button" data-grad="linear" aria-pressed="true">Linear</button>
+                <button type="button" data-grad="radial">Radial</button>
+              </span>
+            </div>
+            <div class="line" id="frameGradientDirLine" hidden>
+              <label>Direction</label>
+              <div class="gradient-compass" id="frameGradCompass" role="group" aria-label="Frame gradient direction"></div>
             </div>
             <div class="line" id="framePaddingLine">
               <label for="framePadding">Padding</label>
@@ -490,9 +555,47 @@
               <input type="range" id="frameTextSize" min="1.5" max="8" value="3.5" step="0.1" style="flex:1;min-width:120px">
               <input type="number" class="numval" id="frameTextSizeVal" min="1.5" max="8" value="3.5" step="0.1">
             </div>
+            <div class="line" id="frameTextColorLine">
+              <label>Text color</label>
+              <button type="button" class="colorpop-trigger" id="textColorTrigger" aria-label="Text color">
+                <span class="swatch" id="textColorSwatch" style="background:#000000"></span>
+                <span id="textColorHexLabel">#000000</span>
+              </button>
+              <label class="toggle"><input type="checkbox" id="textUseGradient"> Gradient</label>
+              <button type="button" class="addrow ghost" id="textMatchFrame" title="Reset text color to track the frame color">Match frame</button>
+            </div>
+            <div class="line" id="textGradientLine" hidden>
+              <label>To</label>
+              <button type="button" class="colorpop-trigger" id="textGradEndTrigger" aria-label="Text gradient end color">
+                <span class="swatch" id="textGradEndSwatch" style="background:#2f9e4d"></span>
+                <span id="textGradEndHexLabel">#2F9E4D</span>
+              </button>
+              <span class="seg" id="textGradType" role="group" aria-label="Text gradient type">
+                <button type="button" data-grad="linear" aria-pressed="true">Linear</button>
+                <button type="button" data-grad="radial">Radial</button>
+              </span>
+            </div>
+            <div class="line" id="textGradientDirLine" hidden>
+              <label>Direction</label>
+              <div class="gradient-compass" id="textGradCompass" role="group" aria-label="Text gradient direction"></div>
+            </div>
           </div>
         </div>
       </section>
+
+      <section class="panel">
+        <h2>Error correction</h2>
+        <div class="body opts">
+          <div class="line">
+            <label>Level</label>
+            <span class="seg" id="ecc" role="group" aria-label="Error correction level">
+              <button type="button" data-ecc="L">L</button>
+              <button type="button" data-ecc="M" aria-pressed="true">M</button>
+              <button type="button" data-ecc="Q">Q</button>
+              <button type="button" data-ecc="H">H</button>
+            </span>
+          </div>
+          <span class="hint">Higher levels survive more wear and dirt but make the code denser. <b>M</b> is a sensible default; the tool auto-bumps to <b>H</b> when a logo or risky shape is in use.</span>
         </div>
       </section>
 
@@ -504,9 +607,7 @@
   </div>
 
   <footer class="fine">
-    Self-contained &mdash; QR engine (node-qrcode, MIT) is embedded, so this file works with no internet.<br>
-    Flag emoji may appear as 2-letter codes on Windows (it lacks flag glyphs); the dial code is always shown too.<br>
-    Labels: iOS reads custom names reliably; Android support varies by contacts app. Test a real scan before printing.
+    Works offline &middot; Always test a real scan before printing.
   </footer>
   <div id="disqus_thread"></div>
   <script type="text/javascript">
@@ -784,7 +885,13 @@
   // =====================================================================
 
   var ecc="M", fg="#16180f", transparent=false, lastSvg=null, lastVcard="";
-  var mode="vcard";
+  // Each "fill" (QR modules, frame stroke, center logo, frame text) has its own
+  // gradient state. The QR's lives at top level. Frame/logo/text gradients live
+  // inside their respective state objects (frameOpts.gradient, logo.gradient,
+  // frameOpts.textGradient) so they persist alongside the rest of that element's
+  // config. Logo color and text color default to null (inherit from fg / frame).
+  var gradient = { enabled: false, type: "linear", endColor: "#2f9e4d", angle: 180 };
+  var mode="url";
   var MODE_KEY = "qr-studio:mode:v1";
   var URL_KEY = "qr-studio:url:v1";
   var LOGO_KEY = "qr-studio:logo:v1";
@@ -806,7 +913,9 @@
   var LOGO_ORDER = ["instagram","facebook","x","linkedin","youtube","mail","phone","globe","mappin"];
   var UPLOAD_ICON_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
-  var logo = { kind: "none", preset: null, customDataUrl: null, sizePct: 18, shape: "square" };
+  var logo = { kind: "none", preset: null, customDataUrl: null, sizePct: 18, shape: "square",
+               color: null,
+               gradient: { enabled: false, type: "linear", endColor: "#2f9e4d", angle: 180 } };
 
   // ===== module shape registry =====
   // Each connected shape uses a 4-corner classifier. For module at (c, r):
@@ -901,7 +1010,10 @@
 
   // ===== new state =====
   var shape = "square";
-  var frameOpts = { kind: "none", color: "#000000", padding: 0, thickness: 1, text: "", textFont: "sans", textPosition: "bottom", textSize: 3.5, textPlacement: "outside" };
+  var frameOpts = { kind: "none", color: "#000000", padding: 0, thickness: 1, text: "", textFont: "sans", textPosition: "bottom", textSize: 3.5, textPlacement: "outside",
+                    textColor: null,
+                    gradient: { enabled: false, type: "linear", endColor: "#2f9e4d", angle: 180 },
+                    textGradient: { enabled: false, type: "linear", endColor: "#2f9e4d", angle: 180 } };
   var designTab = "logo";
   var SHAPE_KEY = "qr-studio:shape:v1";
   var FRAME_KEY = "qr-studio:frame:v1";
@@ -914,6 +1026,131 @@
     update();
   });
   $("#transparent").addEventListener("change", function(){ transparent=this.checked; update(); });
+
+  // ===== gradient controls =====
+  // Relative luminance per WCAG. Used to warn if a chosen color is too light to
+  // scan reliably as the QR's "dark" modules against a light background.
+  function relLuminance(hex){
+    var rgb = hexToRgb(hex);
+    function chan(c){ c = c/255; return c <= 0.03928 ? c/12.92 : Math.pow((c+0.055)/1.055, 2.4); }
+    return 0.2126*chan(rgb.r) + 0.7152*chan(rgb.g) + 0.0722*chan(rgb.b);
+  }
+  function warnIfTooLight(hex, where){
+    // Threshold chosen empirically: above ~0.4 relative luminance, the contrast
+    // with a white background gets soft enough that some scanners struggle.
+    if (relLuminance(hex) > 0.4){
+      toast("Light color in " + where + " — may not scan well");
+    }
+  }
+  function syncGradientUI(){
+    $("#useGradient").checked = gradient.enabled;
+    $("#gradientLine").hidden = !gradient.enabled;
+    $("#gradientDirLine").hidden = !gradient.enabled || gradient.type !== "linear";
+    $("#gradType").querySelectorAll("button").forEach(function(b){
+      b.setAttribute("aria-pressed", b.dataset.grad === gradient.type ? "true" : "false");
+    });
+    $("#gradCompass").querySelectorAll("button").forEach(function(b){
+      b.setAttribute("aria-pressed", parseInt(b.dataset.angle, 10) === gradient.angle ? "true" : "false");
+    });
+    $("#gradEndSwatch").style.background = gradient.endColor;
+    $("#gradEndHexLabel").textContent = gradient.endColor.toUpperCase();
+  }
+  $("#useGradient").addEventListener("change", function(){
+    gradient.enabled = this.checked;
+    if (gradient.enabled){
+      // Gradient adds local contrast variation that's harder to threshold —
+      // bump ECC so the QR can recover. Same pattern as logo and risky shapes.
+      ensureEccAtLeast("H", "gradient fill");
+      ensureFramePaddingForGradient();
+      warnIfTooLight(gradient.endColor, "gradient end");
+      warnIfTooLight(fg, "gradient start");
+    }
+    syncGradientUI(); update();
+  });
+  // When gradient is on AND a frame is set, padding=0 (frame touching QR's outermost
+  // modules) often defeats scanners — they can't find a stable border in the gradient
+  // region. Bump padding to 1 module to restore a thin quiet zone.
+  function ensureFramePaddingForGradient(){
+    if (gradient.enabled && frameOpts.kind !== "none" && (frameOpts.padding || 0) < 1){
+      frameOpts.padding = 1;
+      var s = $("#framePadding"), n = $("#framePaddingVal");
+      if (s) s.value = 1;
+      if (n) n.value = 1;
+      saveFrameState();
+      toast("Frame padding bumped to 1 for gradient scannability");
+    }
+  }
+  $("#gradType").addEventListener("click", function(e){
+    var b = e.target.closest("button[data-grad]"); if (!b) return;
+    gradient.type = b.dataset.grad;
+    syncGradientUI(); update();
+  });
+  $("#gradCompass").addEventListener("click", function(e){
+    var b = e.target.closest("button[data-angle]"); if (!b) return;
+    gradient.angle = parseInt(b.dataset.angle, 10);
+    syncGradientUI(); update();
+  });
+
+  // Generic gradient UI wiring used by frame/logo/text. Expects IDs of the form
+  //   ${prefix}UseGradient, ${prefix}GradientLine, ${prefix}GradientDirLine,
+  //   ${prefix}GradType, ${prefix}GradCompass, ${prefix}GradEndSwatch, ${prefix}GradEndHexLabel
+  // and a state object { enabled, type, endColor, angle }. The caller provides
+  // hooks for onEnable (auto-bumps, warnings) and onChange (persistence).
+  function bindGradient(prefix, state, hooks){
+    hooks = hooks || {};
+    function sync(){
+      var enabled = !!state.enabled;
+      var showDir = enabled && state.type === "linear";
+      $("#" + prefix + "UseGradient").checked = enabled;
+      $("#" + prefix + "GradientLine").hidden = !enabled;
+      $("#" + prefix + "GradientDirLine").hidden = !showDir;
+      $("#" + prefix + "GradType").querySelectorAll("button").forEach(function(b){
+        b.setAttribute("aria-pressed", b.dataset.grad === state.type ? "true" : "false");
+      });
+      $("#" + prefix + "GradCompass").querySelectorAll("button").forEach(function(b){
+        b.setAttribute("aria-pressed", parseInt(b.dataset.angle, 10) === state.angle ? "true" : "false");
+      });
+      $("#" + prefix + "GradEndSwatch").style.background = state.endColor;
+      $("#" + prefix + "GradEndHexLabel").textContent = (state.endColor || "").toUpperCase();
+    }
+    $("#" + prefix + "UseGradient").addEventListener("change", function(){
+      state.enabled = this.checked;
+      if (state.enabled && hooks.onEnable) hooks.onEnable();
+      sync();
+      if (hooks.onChange) hooks.onChange();
+      update();
+    });
+    $("#" + prefix + "GradType").addEventListener("click", function(e){
+      var b = e.target.closest("button[data-grad]"); if (!b) return;
+      state.type = b.dataset.grad;
+      sync();
+      if (hooks.onChange) hooks.onChange();
+      update();
+    });
+    $("#" + prefix + "GradCompass").addEventListener("click", function(e){
+      var b = e.target.closest("button[data-angle]"); if (!b) return;
+      state.angle = parseInt(b.dataset.angle, 10);
+      sync();
+      if (hooks.onChange) hooks.onChange();
+      update();
+    });
+    return { sync: sync };
+  }
+
+  // Build the 8-point compass HTML into any element with class .gradient-compass
+  // (saves repeating 9 buttons in every panel that needs one).
+  function fillCompass(el){
+    el.innerHTML =
+      '<button type="button" data-angle="315" aria-label="Top-left">&#x2196;</button>' +
+      '<button type="button" data-angle="0" aria-label="Top">&#x2191;</button>' +
+      '<button type="button" data-angle="45" aria-label="Top-right">&#x2197;</button>' +
+      '<button type="button" data-angle="270" aria-label="Left">&#x2190;</button>' +
+      '<span class="compass-center" aria-hidden="true"></span>' +
+      '<button type="button" data-angle="90" aria-label="Right">&#x2192;</button>' +
+      '<button type="button" data-angle="225" aria-label="Bottom-left">&#x2199;</button>' +
+      '<button type="button" data-angle="180" aria-label="Bottom">&#x2193;</button>' +
+      '<button type="button" data-angle="135" aria-label="Bottom-right">&#x2198;</button>';
+  }
 
   var frame=$("#qrframe"), tmr=null;
   function update(){ clearTimeout(tmr); tmr=setTimeout(run, 80); }
@@ -965,7 +1202,8 @@
     }
     var svg = svgFromMatrix(qr.modules, {
       margin: 4, dark: fg, light: "#ffffff",
-      transparent: transparent, logo: logo, shape: shape, frame: frameOpts
+      transparent: transparent, logo: logo, shape: shape, frame: frameOpts,
+      gradient: gradient
     });
     lastSvg=svg; frame.innerHTML=svg; $("#dlSvg").disabled=false;
   }
@@ -979,7 +1217,28 @@
     var shapeKey = opts.shape || "square";
     var shapeObj = SHAPES[shapeKey] || SHAPES.square;
     var frameOpts = opts.frame || { kind: "none" };
+    var gradOpts = opts.gradient || { enabled: false };
     var hasFrame = frameOpts.kind && frameOpts.kind !== "none";
+
+    // Gradient setup — each element (QR / frame / logo / text) can have its own fill.
+    // We generate unique IDs upfront so the fill refs can be wired into elements as we
+    // build them, then emit the actual gradient <defs> after frame metrics are known
+    // (the circle-stroke radial gradient needs frame ringR/thick to compute coords).
+    var idSuffix = Math.floor(Math.random() * 1e9).toString(36);
+    var qrGradId = "qrGrad_" + idSuffix;
+    var frameGradId = "frameGrad_" + idSuffix;
+    var logoGradId = "logoGrad_" + idSuffix;
+    var textGradId = "textGrad_" + idSuffix;
+    var frameGradOpts = (frameOpts && frameOpts.gradient) || { enabled: false };
+    var logoColor = (opts.logo && opts.logo.color != null) ? opts.logo.color : dark;
+    var logoGradOpts = (opts.logo && opts.logo.gradient) || { enabled: false };
+    var textColor = (frameOpts && frameOpts.textColor != null) ? frameOpts.textColor : (frameOpts.color || "#000000");
+    var textGradOpts = (frameOpts && frameOpts.textGradient) || { enabled: false };
+    var qrFillRef = gradOpts.enabled ? ("url(#" + qrGradId + ")") : dark;
+    var frameStrokeRef = (frameGradOpts.enabled && hasFrame) ? ("url(#" + frameGradId + ")") : (frameOpts.color || "#000000");
+    var logoFillRef = logoGradOpts.enabled ? ("url(#" + logoGradId + ")") : logoColor;
+    var textFillRef = textGradOpts.enabled ? ("url(#" + textGradId + ")") : textColor;
+
     var margin = (opts.margin != null) ? opts.margin : 4;
     if (hasFrame){
       margin = Math.max(0, frameOpts.padding != null ? frameOpts.padding : 0);
@@ -1054,7 +1313,7 @@
       frameInsetX = fullR - contentW/2;
       frameInsetY = fullR - contentH/2;
       if (thick > 0){
-        framePath = '<circle cx="' + fullR + '" cy="' + fullR + '" r="' + ringR + '" fill="none" stroke="' + frameOpts.color + '" stroke-width="' + thick + '"/>';
+        framePath = '<circle cx="' + fullR + '" cy="' + fullR + '" r="' + ringR + '" fill="none" stroke="' + frameStrokeRef + '" stroke-width="' + thick + '"/>';
       }
     } else if (hasFrame){
       frameOuterW = contentW + 2*thick;
@@ -1063,7 +1322,7 @@
       frameInsetY = thick;
       var rx = (frameOpts.kind === "rounded") ? Math.min(frameOuterW * 0.08, thick + 2) : 0;
       if (thick > 0){
-        framePath = '<rect x="' + (thick/2) + '" y="' + (thick/2) + '" width="' + (frameOuterW - thick) + '" height="' + (frameOuterH - thick) + '" rx="' + rx + '" fill="none" stroke="' + frameOpts.color + '" stroke-width="' + thick + '"/>';
+        framePath = '<rect x="' + (thick/2) + '" y="' + (thick/2) + '" width="' + (frameOuterW - thick) + '" height="' + (frameOuterH - thick) + '" rx="' + rx + '" fill="none" stroke="' + frameStrokeRef + '" stroke-width="' + thick + '"/>';
       }
     } else {
       frameOuterW = contentW;
@@ -1120,15 +1379,77 @@
     var safeText = hasText ? String(textStr).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;") : "";
     var textBlock = hasText ? ('<text x="' + textX + '" y="' + textY +
       '" font-family="' + fontFamily + '" font-size="' + fontSize +
-      '" font-weight="' + fontWeight + '" fill="' + frameOpts.color +
+      '" font-weight="' + fontWeight + '" fill="' + textFillRef +
       '" text-anchor="middle" dominant-baseline="central"' +
       ' textLength="' + targetTextWidth + '" lengthAdjust="spacingAndGlyphs">' +
       safeText + '</text>') : "";
 
-    var logoOverlay = renderLogoOverlay(opts.logo, qrSize, dark, clear);
+    var logoOverlay = renderLogoOverlay(opts.logo, qrSize, logoFillRef, clear);
+
+    // Build gradient defs for any enabled gradient. We need frame metrics (ringR, thick,
+    // fullR) for the circle-stroke radial special case (inside-edge → outside-edge).
+    var gradients = [];
+    function makeLinearDef(id, angle, startC, endC){
+      var rad = (angle || 0) * Math.PI / 180;
+      var dx = Math.sin(rad), dy = -Math.cos(rad);
+      var x1 = (0.5 - dx * 0.5).toFixed(3);
+      var y1 = (0.5 - dy * 0.5).toFixed(3);
+      var x2 = (0.5 + dx * 0.5).toFixed(3);
+      var y2 = (0.5 + dy * 0.5).toFixed(3);
+      return '<linearGradient id="' + id + '" x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 + '">' +
+        '<stop offset="0%" stop-color="' + startC + '"/>' +
+        '<stop offset="100%" stop-color="' + endC + '"/>' +
+        '</linearGradient>';
+    }
+    function makeRadialDef(id, startC, endC){
+      return '<radialGradient id="' + id + '" cx="0.5" cy="0.5" r="0.7">' +
+        '<stop offset="0%" stop-color="' + startC + '"/>' +
+        '<stop offset="100%" stop-color="' + endC + '"/>' +
+        '</radialGradient>';
+    }
+    if (gradOpts.enabled){
+      gradients.push(gradOpts.type === "radial"
+        ? makeRadialDef(qrGradId, dark, gradOpts.endColor || "#2f9e4d")
+        : makeLinearDef(qrGradId, gradOpts.angle, dark, gradOpts.endColor || "#2f9e4d"));
+    }
+    if (logoGradOpts.enabled){
+      gradients.push(logoGradOpts.type === "radial"
+        ? makeRadialDef(logoGradId, logoColor, logoGradOpts.endColor || "#2f9e4d")
+        : makeLinearDef(logoGradId, logoGradOpts.angle, logoColor, logoGradOpts.endColor || "#2f9e4d"));
+    }
+    if (textGradOpts.enabled){
+      gradients.push(textGradOpts.type === "radial"
+        ? makeRadialDef(textGradId, textColor, textGradOpts.endColor || "#2f9e4d")
+        : makeLinearDef(textGradId, textGradOpts.angle, textColor, textGradOpts.endColor || "#2f9e4d"));
+    }
+    if (frameGradOpts.enabled && hasFrame){
+      var frameStartC = frameOpts.color || "#000000";
+      var frameEndC = frameGradOpts.endColor || "#2f9e4d";
+      if (frameGradOpts.type === "radial" && frameOpts.kind === "circle"){
+        // Special: gradient transitions inside-edge → outside-edge of the circle's stroke.
+        // We use userSpaceOnUse with the circle's actual radius so we can place stops
+        // exactly at the inner and outer stroke edges (otherwise a single radial gradient
+        // applied to the stroke gives a uniform color, since all stroke pixels are at
+        // approximately the same radius from the center).
+        var innerStrokeR = ringR - thick / 2;
+        var outerStrokeR = ringR + thick / 2;
+        var innerFrac = (innerStrokeR / outerStrokeR).toFixed(3);
+        gradients.push('<radialGradient id="' + frameGradId + '" cx="' + fullR + '" cy="' + fullR + '" r="' + outerStrokeR + '" gradientUnits="userSpaceOnUse">' +
+          '<stop offset="' + innerFrac + '" stop-color="' + frameStartC + '"/>' +
+          '<stop offset="1" stop-color="' + frameEndC + '"/>' +
+          '</radialGradient>');
+      } else if (frameGradOpts.type === "radial"){
+        // For rect/rounded frames, radial gradient centered on the frame creates a
+        // halo effect — colors blend across the stroke around the perimeter.
+        gradients.push(makeRadialDef(frameGradId, frameStartC, frameEndC));
+      } else {
+        gradients.push(makeLinearDef(frameGradId, frameGradOpts.angle, frameStartC, frameEndC));
+      }
+    }
+    var gradientDefs = gradients.length ? '<defs>' + gradients.join('') + '</defs>' : '';
 
     var qrContent = '<g transform="translate(' + qrInCanvasX + ' ' + qrInCanvasY + ')">' +
-      '<path fill="' + dark + '" d="' + darkPath + '"/>' + logoOverlay + '</g>';
+      '<path fill="' + qrFillRef + '" d="' + darkPath + '"/>' + logoOverlay + '</g>';
 
     var framePathPositioned = framePath
       ? '<g transform="translate(' + frameInCanvasX + ' ' + frameInCanvasY + ')">' + framePath + '</g>'
@@ -1146,7 +1467,7 @@
     return '<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"' +
       ' viewBox="0 0 ' + canvasW + ' ' + canvasH + '"' +
       ' preserveAspectRatio="xMidYMid meet">' +
-      canvasBg + qrContent + framePathPositioned + textBlock + '</svg>';
+      gradientDefs + canvasBg + qrContent + framePathPositioned + textBlock + '</svg>';
   }
 
   // Compute the path segment for one corner of a connected-shape module.
@@ -1215,7 +1536,11 @@
   // The plate exactly fills the cleared zone (when one exists) so its edges align to
   // module boundaries — no partial-module artifacts. The icon sits centered inside
   // the plate with padding.
-  function renderLogoOverlay(logo, vb, fg, clear){
+  // iconFillRef is either a solid color (e.g. "#16180f") or a gradient URL like
+  // "url(#logoGrad_xxx)". Preset icons use `currentColor` internally; we either wrap
+  // them in <g color="#xxx"> for solid (currentColor inherits), or substitute the
+  // gradient URL directly into the inline SVG markup for the gradient case.
+  function renderLogoOverlay(logo, vb, iconFillRef, clear){
     if(!logo || logo.kind === "none") return "";
     if(logo.kind === "preset" && !LOGO_PRESETS[logo.preset]) return "";
     if(logo.kind === "custom" && !logo.customDataUrl) return "";
@@ -1242,8 +1567,19 @@
     var inner;
     if(logo.kind === "preset"){
       var s = iconUnits / 24;
-      inner = '<g transform="translate(' + iconLeft + ' ' + iconLeft + ') scale(' + s + ')" color="' + fg + '">' + LOGO_PRESETS[logo.preset].svg + '</g>';
+      var presetSvg = LOGO_PRESETS[logo.preset].svg;
+      var isGradient = (typeof iconFillRef === "string" && iconFillRef.indexOf("url(") === 0);
+      if (isGradient){
+        // Gradient: substitute currentColor with the URL so each stroke/fill resolves
+        // to the gradient instead of an inherited color.
+        var subbed = presetSvg.replace(/currentColor/g, iconFillRef);
+        inner = '<g transform="translate(' + iconLeft + ' ' + iconLeft + ') scale(' + s + ')">' + subbed + '</g>';
+      } else {
+        // Solid: rely on currentColor inheritance from the wrapping <g color="...">
+        inner = '<g transform="translate(' + iconLeft + ' ' + iconLeft + ') scale(' + s + ')" color="' + iconFillRef + '">' + presetSvg + '</g>';
+      }
     } else {
+      // Custom raster/SVG image — fill ref doesn't apply (image has its own colors)
       inner = '<image href="' + logo.customDataUrl + '" x="' + iconLeft + '" y="' + iconLeft +
         '" width="' + iconUnits + '" height="' + iconUnits + '" preserveAspectRatio="xMidYMid meet"/>';
     }
@@ -1351,7 +1687,7 @@
       adrType:$("#adrType").value, street:$("#street").value, city:$("#city").value,
       region:$("#region").value, zip:$("#zip").value, country:$("#country").value,
       url:$("#url").value, note:$("#note").value,
-      phones:ph, emails:em, ecc:ecc, fg:fg, transparent:transparent };
+      phones:ph, emails:em, ecc:ecc, fg:fg, transparent:transparent, gradient:gradient };
   }
   function saveState(){ try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(serializeState())); }catch(e){} }
   function loadState(){ try{ var s=localStorage.getItem(STORAGE_KEY); return s?JSON.parse(s):null; }catch(e){ return null; } }
@@ -1360,9 +1696,16 @@
     ecc = s.ecc || "M";
     fg = s.fg || "#16180f";
     transparent = !!s.transparent;
+    if (s.gradient && typeof s.gradient === "object"){
+      gradient.enabled = !!s.gradient.enabled;
+      if (s.gradient.type === "linear" || s.gradient.type === "radial") gradient.type = s.gradient.type;
+      if (typeof s.gradient.endColor === "string" && /^#[0-9a-f]{6}$/i.test(s.gradient.endColor)) gradient.endColor = s.gradient.endColor;
+      if (typeof s.gradient.angle === "number") gradient.angle = s.gradient.angle;
+    }
     $("#ecc").querySelectorAll("button").forEach(function(x){ x.setAttribute("aria-pressed", x.getAttribute("data-ecc")===ecc?"true":"false"); });
     syncFgUI();
     $("#transparent").checked = transparent;
+    syncGradientUI();
   }
   function applyState(s){
     ["firstName","lastName","org","title","adrType","street","city","region","zip","country","url","note"].forEach(function(k){ setVal(k, s[k]); });
@@ -1541,6 +1884,15 @@
         // Legacy "none" plate is no longer offered — migrate silently to square so
         // the rendering stays consistent with what the UI now shows.
         else if (parsed.shape === "none") logo.shape = "square";
+        // Color may be null (inherit from fg) or a #hex string.
+        if(parsed.color === null) logo.color = null;
+        else if(typeof parsed.color === "string" && /^#[0-9a-f]{6}$/i.test(parsed.color)) logo.color = parsed.color;
+        if(parsed.gradient && typeof parsed.gradient === "object"){
+          logo.gradient.enabled = !!parsed.gradient.enabled;
+          if(parsed.gradient.type === "linear" || parsed.gradient.type === "radial") logo.gradient.type = parsed.gradient.type;
+          if(typeof parsed.gradient.endColor === "string" && /^#[0-9a-f]{6}$/i.test(parsed.gradient.endColor)) logo.gradient.endColor = parsed.gradient.endColor;
+          if(typeof parsed.gradient.angle === "number") logo.gradient.angle = parsed.gradient.angle;
+        }
       }
     } catch(e){}
   }
@@ -1699,6 +2051,7 @@
       x.setAttribute("aria-checked", x.dataset.frame === frameOpts.kind ? "true" : "false");
     });
     refreshFrameControls();
+    if (typeof ensureFramePaddingForGradient === "function") ensureFramePaddingForGradient();
     saveFrameState();
     run();
   });
@@ -1815,6 +2168,22 @@
         if (p.textPosition === "top" || p.textPosition === "bottom") frameOpts.textPosition = p.textPosition;
         if (p.textPlacement === "outside" || p.textPlacement === "inside") frameOpts.textPlacement = p.textPlacement;
         if (typeof p.textSize === "number" && p.textSize >= 1.5 && p.textSize <= 8) frameOpts.textSize = p.textSize;
+        // Frame stroke gradient
+        if (p.gradient && typeof p.gradient === "object"){
+          frameOpts.gradient.enabled = !!p.gradient.enabled;
+          if (p.gradient.type === "linear" || p.gradient.type === "radial") frameOpts.gradient.type = p.gradient.type;
+          if (typeof p.gradient.endColor === "string" && /^#[0-9a-f]{6}$/i.test(p.gradient.endColor)) frameOpts.gradient.endColor = p.gradient.endColor;
+          if (typeof p.gradient.angle === "number") frameOpts.gradient.angle = p.gradient.angle;
+        }
+        // Text color (null = inherit from frame color) + text gradient
+        if (p.textColor === null) frameOpts.textColor = null;
+        else if (typeof p.textColor === "string" && /^#[0-9a-f]{6}$/i.test(p.textColor)) frameOpts.textColor = p.textColor;
+        if (p.textGradient && typeof p.textGradient === "object"){
+          frameOpts.textGradient.enabled = !!p.textGradient.enabled;
+          if (p.textGradient.type === "linear" || p.textGradient.type === "radial") frameOpts.textGradient.type = p.textGradient.type;
+          if (typeof p.textGradient.endColor === "string" && /^#[0-9a-f]{6}$/i.test(p.textGradient.endColor)) frameOpts.textGradient.endColor = p.textGradient.endColor;
+          if (typeof p.textGradient.angle === "number") frameOpts.textGradient.angle = p.textGradient.angle;
+        }
       }
     } catch(e){}
   }
@@ -1825,11 +2194,23 @@
     if (!confirm("Reset all design settings? This clears the logo, shape, frame, and render options. Your URL and vCard data are kept.")) return;
     // Render options
     ecc = "M"; fg = "#16180f"; transparent = false;
+    gradient = { enabled: false, type: "linear", endColor: "#2f9e4d", angle: 180 };
     $("#ecc").querySelectorAll("button").forEach(function(x){ x.setAttribute("aria-pressed", x.getAttribute("data-ecc") === "M" ? "true" : "false"); });
     syncFgUI();
     $("#transparent").checked = false;
-    // Logo
-    logo = { kind: "none", preset: null, customDataUrl: null, sizePct: 18, shape: "square" };
+    syncGradientUI();
+    // Logo — mutate in place so existing references (e.g. bindGradient closures
+    // over logo.gradient) keep pointing at live state.
+    logo.kind = "none";
+    logo.preset = null;
+    logo.customDataUrl = null;
+    logo.sizePct = 18;
+    logo.shape = "square";
+    logo.color = null;
+    logo.gradient.enabled = false;
+    logo.gradient.type = "linear";
+    logo.gradient.endColor = "#2f9e4d";
+    logo.gradient.angle = 180;
     saveLogoState();
     buildPicker();
     refreshPickerSelection();
@@ -1837,14 +2218,33 @@
     $("#logoShape").querySelectorAll("button").forEach(function(x){
       x.setAttribute("aria-pressed", x.dataset.shape === "square" ? "true" : "false");
     });
+    syncLogoColorUI();
+    logoGradUI.sync();
     // Shape
     shape = "square";
     try { localStorage.setItem(SHAPE_KEY, shape); } catch(e){}
     $("#shapePicker").querySelectorAll("button").forEach(function(x){
       x.setAttribute("aria-checked", x.dataset.shape === "square" ? "true" : "false");
     });
-    // Frame
-    frameOpts = { kind: "none", color: "#000000", padding: 0, thickness: 1, text: "", textFont: "sans", textPosition: "bottom", textSize: 3.5, textPlacement: "outside" };
+    // Frame — mutate in place, same reason
+    frameOpts.kind = "none";
+    frameOpts.color = "#000000";
+    frameOpts.padding = 0;
+    frameOpts.thickness = 1;
+    frameOpts.text = "";
+    frameOpts.textFont = "sans";
+    frameOpts.textPosition = "bottom";
+    frameOpts.textSize = 3.5;
+    frameOpts.textPlacement = "outside";
+    frameOpts.textColor = null;
+    frameOpts.gradient.enabled = false;
+    frameOpts.gradient.type = "linear";
+    frameOpts.gradient.endColor = "#2f9e4d";
+    frameOpts.gradient.angle = 180;
+    frameOpts.textGradient.enabled = false;
+    frameOpts.textGradient.type = "linear";
+    frameOpts.textGradient.endColor = "#2f9e4d";
+    frameOpts.textGradient.angle = 180;
     saveFrameState();
     $("#framePicker").querySelectorAll("button").forEach(function(x){
       x.setAttribute("aria-checked", x.dataset.frame === "none" ? "true" : "false");
@@ -1864,6 +2264,10 @@
       x.setAttribute("aria-pressed", x.dataset.placement === "outside" ? "true" : "false");
     });
     $("#frameTextSize").value = 3.5; $("#frameTextSizeVal").value = 3.5;
+    // Re-sync the new gradient/inherited-color UIs
+    frameGradUI.sync();
+    textGradUI.sync();
+    syncTextColorUI();
     refreshFrameControls();
     run();
     toast("Design reset");
@@ -2050,10 +2454,112 @@
 
   // Wire foreground + frame color pickers
   createColorPicker($("#fgTrigger"), $("#fgHexLabel"), $("#fgSwatch"), fg, function(hex){
-    fg = hex; update();
+    fg = hex;
+    if (gradient.enabled) warnIfTooLight(hex, "gradient start");
+    // If the logo color is inheriting from fg (logo.color === null), update its
+    // displayed swatch to reflect the new fg color.
+    if (logo.color == null) syncLogoColorUI();
+    update();
   });
   createColorPicker($("#frameColorTrigger"), $("#frameColorHexLabel"), $("#frameColorSwatch"), frameOpts.color, function(hex){
-    frameOpts.color = hex; saveFrameState(); update();
+    frameOpts.color = hex;
+    if (frameOpts.gradient.enabled) warnIfTooLight(hex, "frame gradient start");
+    // Text color inheriting from frame? Reflect the new frame color in its swatch.
+    if (frameOpts.textColor == null) syncTextColorUI();
+    saveFrameState(); update();
+  });
+  createColorPicker($("#gradEndTrigger"), $("#gradEndHexLabel"), $("#gradEndSwatch"), gradient.endColor, function(hex){
+    gradient.endColor = hex;
+    if (gradient.enabled) warnIfTooLight(hex, "gradient end");
+    update();
+  });
+
+  // ===== frame gradient =====
+  fillCompass($("#frameGradCompass"));
+  createColorPicker($("#frameGradEndTrigger"), $("#frameGradEndHexLabel"), $("#frameGradEndSwatch"), frameOpts.gradient.endColor, function(hex){
+    frameOpts.gradient.endColor = hex;
+    if (frameOpts.gradient.enabled) warnIfTooLight(hex, "frame gradient end");
+    saveFrameState(); update();
+  });
+  var frameGradUI = bindGradient("frame", frameOpts.gradient, {
+    onEnable: function(){
+      ensureEccAtLeast("H", "frame gradient");
+      warnIfTooLight(frameOpts.gradient.endColor, "frame gradient end");
+      warnIfTooLight(frameOpts.color, "frame gradient start");
+    },
+    onChange: saveFrameState
+  });
+
+  // ===== logo color + gradient =====
+  fillCompass($("#logoGradCompass"));
+  // Logo color picker. logo.color == null means "inherit from QR fg" — in that
+  // case the picker displays the current fg color (read-only echo). Picking a
+  // color makes it explicit (logo.color = picked). Match QR clears back to null.
+  createColorPicker($("#logoColorTrigger"), $("#logoColorHexLabel"), $("#logoColorSwatch"),
+    (logo.color != null ? logo.color : fg),
+    function(hex){
+      logo.color = hex;
+      syncLogoColorUI();
+      saveLogoState(); update();
+    });
+  createColorPicker($("#logoGradEndTrigger"), $("#logoGradEndHexLabel"), $("#logoGradEndSwatch"), logo.gradient.endColor, function(hex){
+    logo.gradient.endColor = hex;
+    saveLogoState(); update();
+  });
+  function syncLogoColorUI(){
+    var effective = (logo.color != null) ? logo.color : fg;
+    $("#logoColorSwatch").style.background = effective;
+    $("#logoColorHexLabel").textContent = (effective || "#000000").toUpperCase();
+    // Hide Match QR when already inheriting
+    var matchBtn = $("#logoMatchQR");
+    if (matchBtn) matchBtn.style.display = (logo.color == null) ? "none" : "";
+  }
+  $("#logoMatchQR").addEventListener("click", function(){
+    logo.color = null;
+    syncLogoColorUI();
+    saveLogoState(); update();
+  });
+  var logoGradUI = bindGradient("logo", logo.gradient, {
+    onEnable: function(){
+      // Gradient on logo doesn't impair scannability (logo is inside the cleared
+      // zone) so no ECC bump needed. Just sanity-warn if the colors will be
+      // washed out on the white plate.
+    },
+    onChange: saveLogoState
+  });
+
+  // ===== text color + gradient =====
+  fillCompass($("#textGradCompass"));
+  // Text color picker. frameOpts.textColor == null means "inherit from frame color".
+  createColorPicker($("#textColorTrigger"), $("#textColorHexLabel"), $("#textColorSwatch"),
+    (frameOpts.textColor != null ? frameOpts.textColor : frameOpts.color),
+    function(hex){
+      frameOpts.textColor = hex;
+      syncTextColorUI();
+      saveFrameState(); update();
+    });
+  createColorPicker($("#textGradEndTrigger"), $("#textGradEndHexLabel"), $("#textGradEndSwatch"), frameOpts.textGradient.endColor, function(hex){
+    frameOpts.textGradient.endColor = hex;
+    saveFrameState(); update();
+  });
+  function syncTextColorUI(){
+    var effective = (frameOpts.textColor != null) ? frameOpts.textColor : (frameOpts.color || "#000000");
+    $("#textColorSwatch").style.background = effective;
+    $("#textColorHexLabel").textContent = (effective || "#000000").toUpperCase();
+    var matchBtn = $("#textMatchFrame");
+    if (matchBtn) matchBtn.style.display = (frameOpts.textColor == null) ? "none" : "";
+  }
+  $("#textMatchFrame").addEventListener("click", function(){
+    frameOpts.textColor = null;
+    syncTextColorUI();
+    saveFrameState(); update();
+  });
+  var textGradUI = bindGradient("text", frameOpts.textGradient, {
+    onEnable: function(){
+      // Text isn't scanned, so no ECC bump. The light-color warning applies
+      // for legibility against the background, not scannability.
+    },
+    onChange: saveFrameState
   });
 
   function syncFgUI(){
@@ -2120,6 +2626,13 @@
   $("#frameTextSizeVal").value = frameOpts.textSize;
   // Sync foreground color UI
   syncFgUI();
+  // Sync the new gradient + inherited-color UIs (frame, logo, text) so they
+  // reflect persisted state on first paint
+  frameGradUI.sync();
+  logoGradUI.sync();
+  textGradUI.sync();
+  syncLogoColorUI();
+  syncTextColorUI();
   setDesignTab(designTab);
   $("#leftCol").addEventListener("input", update);
   setMode(mode);
