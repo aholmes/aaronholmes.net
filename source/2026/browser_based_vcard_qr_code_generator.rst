@@ -1,8 +1,8 @@
 .. meta::
     :date: 2026-05-25
 
-Browser-Based vCard QR Code Generator
-=====================================
+Browser-Based URL and vCard QR Code Generator
+=============================================
 
 |pagedate|
 
