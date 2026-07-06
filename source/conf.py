@@ -61,7 +61,12 @@ exclude_patterns: list[str] = []
 html_theme = "conestack"
 pygments_style = "one-dark"
 html_static_path: list[str] = ["_static"]
-html_extra_path: list[str] = ["ads.txt"]
+html_extra_path: list[str] = [
+    "ads.txt",
+    "robots.txt",
+    "sitemap_index.xml",
+    "sitemap_static.xml"
+]
 html_css_files: list[str] = ["custom.css"]
 html_theme_options = {
     "logo_url": "",
@@ -111,6 +116,8 @@ use_dirhtml = False
 
 # sitemap
 sitemap_url_scheme = "{link}"
+sitemap_show_lastmod = True
+sitemap_indent = 2
 
 redirects = {
     # Static redirects for ease of use for some files/URLs
